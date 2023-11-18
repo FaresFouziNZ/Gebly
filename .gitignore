@@ -31,6 +31,8 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+#for Supabase
+credentials.dart
 
 # Symbolication related
 app.*.symbols
