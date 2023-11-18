@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'credentials.dart' as credentials;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+    url: credentials.url,
+    anonKey: credentials.anonKey,
+  );
   runApp(const MainApp());
 }
 
