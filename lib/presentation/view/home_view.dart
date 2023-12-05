@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomeView extends HookConsumerWidget {
+class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
