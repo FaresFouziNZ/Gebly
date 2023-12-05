@@ -48,7 +48,6 @@ class RestaurantCard extends StatelessWidget {
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 14,
-                    fontFamily: 'Roboto',
                     fontWeight: FontWeight.w500,
                     height: 0.10,
                     letterSpacing: 0.14,

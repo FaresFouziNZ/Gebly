@@ -1,4 +1,4 @@
-import 'package:gebly/core/services/database_tabels.dart';
+import 'package:gebly/core/services/database_tables.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DatabaseQueries {
