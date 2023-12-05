@@ -69,59 +69,55 @@ class HomeView extends StatelessWidget {
                       )),
                 ),
               ),
-              Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.925,
-                  height: MediaQuery.of(context).size.height * 0.19,
-                  decoration: BoxDecoration(
-                    // color: Theme.of(context).colorScheme.secondaryContainer,
-                    image: const DecorationImage(
-                      image: AssetImage('assets/images/eventAd.png'),
-                      fit: BoxFit.fitWidth,
-                    ),
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Theme.of(context).colorScheme.secondaryContainer,
-                        Theme.of(context).colorScheme.primaryContainer,
-                      ],
-                    ),
-                    borderRadius: BorderRadius.circular(7.0),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.925,
+                height: MediaQuery.of(context).size.height * 0.19,
+                decoration: BoxDecoration(
+                  // color: Theme.of(context).colorScheme.secondaryContainer,
+                  image: const DecorationImage(
+                    image: AssetImage('assets/images/eventAd.png'),
+                    fit: BoxFit.fitWidth,
                   ),
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Theme.of(context).colorScheme.secondaryContainer,
+                      Theme.of(context).colorScheme.primaryContainer,
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(7.0),
                 ),
               ),
-              Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.925,
-                  height: MediaQuery.of(context).size.height * 0.19,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [Colors.transparent, Colors.black.withOpacity(0.8)],
-                    ),
-                    borderRadius: BorderRadius.circular(7.0),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.925,
+                height: MediaQuery.of(context).size.height * 0.19,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.transparent, Colors.black.withOpacity(0.8)],
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 8.0, bottom: 8.0, right: 8.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Gathering? \nStart here',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward,
+                  borderRadius: BorderRadius.circular(7.0),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 8.0, bottom: 8.0, right: 8.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Gathering? \nStart here',
+                        style: TextStyle(
                           color: Colors.white,
-                        )
-                      ],
-                    ),
+                          fontSize: 24,
+                        ),
+                      ),
+                      Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
+                      )
+                    ],
                   ),
                 ),
               ),
