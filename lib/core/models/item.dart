@@ -37,11 +37,6 @@ class Item {
     };
   }
 
-  @override
-  String toString() {
-    return 'Item(id: $id, name: $name, price: $price, photoUrl: $photoUrl, restaurantID: $restaurantID, createdAt: $createdAt)';
-  }
-
   bool isEqual(Item other) {
     return id == other.id &&
         name == other.name &&
@@ -50,5 +45,9 @@ class Item {
         restaurantID == other.restaurantID &&
         createdAt == other.createdAt;
   }
-  
+
+  @override
+  String toString() {
+    return 'Item(id: $id, name: $name, price: $price, photoUrl: $photoUrl, restaurantID: $restaurantID, createdAt: $createdAt)';
+  }
 }
