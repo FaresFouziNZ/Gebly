@@ -25,5 +25,15 @@ class DatabaseQueries {
     }
     return false;
   }
+
+  Future joinEventUsingCode({required String eventID}) async {
+    final userID = auth.currentUser!.id;
+    var userInfo = await _tables.users.select().eq('id', userID);
+    if (userInfo[0]['active_event_id'] != null) {
+      throw Exception('User already in event');
+    }
+    _tables.users.update({'active_event_id': eventID}).eq('id', userID);
+  }
+
   }
 }
