@@ -35,5 +35,13 @@ class DatabaseQueries {
     _tables.users.update({'active_event_id': eventID}).eq('id', userID);
   }
 
+  Future<Event> getEventByCode({required String code}) async {
+    var eventInfo = await _tables.event.select().eq('code', code);
+    if (eventInfo.length == 0) {
+      throw Exception('Event not found');
+    }
+    return Event.fromJson(eventInfo[0]);
+  }
+
   }
 }
