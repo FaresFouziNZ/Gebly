@@ -9,7 +9,7 @@ class EventCode extends StatelessWidget {
     String code = 'BRYDLT';
     return Container(
       width: 386,
-      height: 100,
+      height: 120,
       decoration: ShapeDecoration(
         color: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
@@ -18,12 +18,12 @@ class EventCode extends StatelessWidget {
         children: [
           Positioned(
             left: 61,
-            top: 50,
+            top: 64,
             child: Text(
               code,
               style: const TextStyle(
                 color: Colors.black,
-                fontSize: 52,
+                fontSize: 57,
                 fontFamily: 'Readex Pro',
                 fontWeight: FontWeight.w400,
                 height: 0.02,
@@ -33,7 +33,7 @@ class EventCode extends StatelessWidget {
           ),
           Positioned(
               right: 15,
-              top: 20,
+              top: 32,
               child: IconButton(
                 iconSize: 46,
                 onPressed: () {
