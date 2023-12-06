@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widget/event_code.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
