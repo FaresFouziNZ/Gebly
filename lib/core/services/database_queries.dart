@@ -48,4 +48,14 @@ class DatabaseQueries {
     var restaurants = await _tables.restaurant.select().limit(10);
     return restaurants;
   }
+
+  Future<List<Item>> getMenu({required int restaurantID}) async {
+    List<Item> menu = [];
+    var menuInfo = await _tables.item.select().eq('restaurant_id', restaurantID);
+    for (var i = 0; i < menu.length; i++) {
+      menu.add(Item.fromJson(menuInfo[i]));
+    }
+    return menu;
+  }
+
 }
