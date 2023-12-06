@@ -58,4 +58,9 @@ class DatabaseQueries {
     return menu;
   }
 
+  Future makeOrder({required Order order, required List<Item> items}) async {
+    final newOrderID = await _tables.order.insert(order.toJson()).select();
+    await addItemsToOrderItemTable(orderID: newOrderID, items: items);
+  }
+
 }
