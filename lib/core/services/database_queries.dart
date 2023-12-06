@@ -16,5 +16,14 @@ class DatabaseQueries {
     }
     return userInfo[0]['active_event_id'];
   }
+
+  Future<bool> isUserFree() async {
+    final userID = auth.currentUser!.id;
+    var userInfo = await _tables.users.select().eq('id', userID);
+    if (userInfo[0]['active_event_id'] == null) {
+      return true;
+    }
+    return false;
+  }
   }
 }
