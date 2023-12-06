@@ -63,4 +63,11 @@ class DatabaseQueries {
     await addItemsToOrderItemTable(orderID: newOrderID, items: items);
   }
 
+  Future addItemsToOrderItemTable({required String orderID, required List<Item> items}) async {
+    for (var i = 0; i < items.length; i++) {
+      _tables.orderItem.insert({'order_id': orderID, 'item_id': items[i].id});
+    }
+  }
+  //add item to order
+  //get order
 }
