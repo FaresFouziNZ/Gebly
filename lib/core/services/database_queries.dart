@@ -43,5 +43,9 @@ class DatabaseQueries {
     return Event.fromJson(eventInfo[0]);
   }
 
+  Future getNearRestaurants() async {
+    //FIXME: get user location
+    var restaurants = await _tables.restaurant.select().limit(10);
+    return restaurants;
   }
 }
