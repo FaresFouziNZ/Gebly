@@ -1,5 +1,5 @@
 class Order {
-  final int orderID;
+  final int? orderID;
   final String userID;
   final int eventID;
   final int total;

@@ -1,5 +1,5 @@
 class Event {
-  final int id;
+  final int? id;
   final String bossID;
   final int restaurantID;
   final DateTime createdAt;
