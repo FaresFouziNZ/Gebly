@@ -14,8 +14,8 @@ class EventMadeView extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        const EventCode(),
-        const EventInfo(),
+        const EventCode(), //this is the widget with the event code displayed and a copy button and status
+        const EventInfo(), //this is the widget that displays payment method, deadline, restaurant name and logo
         Container(
           width: 428,
           height: 350,
@@ -144,7 +144,7 @@ class EventMadeView extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       itemCount: 5,
                       itemBuilder: (context, index) {
-                        return const UserOrder();
+                        return const UserOrder();     //this is the widget that has the user who ordered and the price of the order
                       }),
                 ),
               )
