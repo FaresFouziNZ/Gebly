@@ -14,10 +14,13 @@ class EventInfo extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+        padding: const EdgeInsets.fromLTRB(10, 10, 5, 5),
         child: Row(children: [
           Column(
             children: [
+              const SizedBox(
+                height: 20,
+              ),
               const Text(
                 'Payment method',
                 textAlign: TextAlign.right,
@@ -41,6 +44,9 @@ class EventInfo extends StatelessWidget {
           const Spacer(),
           const Column(
             children: [
+              SizedBox(
+                height: 20,
+              ),
               Text(
                 'Deadline',
                 textAlign: TextAlign.right,
@@ -72,6 +78,9 @@ class EventInfo extends StatelessWidget {
           const Spacer(),
           const Column(
             children: [
+              SizedBox(
+                height: 20,
+              ),
               Text(
                 'Restaurant',
                 textAlign: TextAlign.right,
