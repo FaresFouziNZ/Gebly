@@ -3,7 +3,6 @@ class Order {
   final String userID;
   final int eventID;
   final int total;
-  final String activeEventID;
   final DateTime createdAt;
 
   Order({
@@ -11,7 +10,6 @@ class Order {
     required this.userID,
     required this.eventID,
     required this.total,
-    required this.activeEventID,
     required this.createdAt,
   });
 
@@ -21,7 +19,6 @@ class Order {
       userID: json['user_id'],
       eventID: json['event_id'],
       total: json['total'],
-      activeEventID: json['active_event_id'],
       createdAt: DateTime.parse(json['created_at']),
     );
   }
@@ -32,7 +29,6 @@ class Order {
       'user_id': userID,
       'event_id': eventID,
       'total': total,
-      'active_event_id': activeEventID,
       'created_at': createdAt.toIso8601String(),
     };
   }
@@ -42,12 +38,11 @@ class Order {
         userID == other.userID &&
         eventID == other.eventID &&
         total == other.total &&
-        activeEventID == other.activeEventID &&
         createdAt == other.createdAt;
   }
 
   @override
   String toString() {
-    return 'Order{order_id: $orderID, user_id: $userID, event_id: $eventID, total: $total, active_event_id: $activeEventID, created_at: $createdAt}';
+    return 'Order{order_id: $orderID, user_id: $userID, event_id: $eventID, total: $total, created_at: $createdAt}';
   }
 }
