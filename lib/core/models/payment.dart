@@ -1,5 +1,5 @@
 class Payment {
-  final String id;
+  final int id;
   final String userID;
   final String name;
   final String iban;
