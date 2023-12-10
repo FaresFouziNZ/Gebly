@@ -138,12 +138,15 @@ class EventMadeView extends StatelessWidget {
                 height: 10,
               ),
               Expanded(
-                child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return const UserOrder();
-                    }),
+                child: SizedBox(
+                  width: 386,
+                  child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: 5,
+                      itemBuilder: (context, index) {
+                        return const UserOrder();
+                      }),
+                ),
               )
             ],
           ),

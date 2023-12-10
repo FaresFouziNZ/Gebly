@@ -7,7 +7,7 @@ class UserOrder extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
       child: Container(
         width: 386,
         height: 81,
