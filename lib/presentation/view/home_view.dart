@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:gebly/presentation/widget/join_event_widget.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -6,11 +8,6 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        title: const Text('HomeView'),
-      ),
       drawer: Drawer(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -137,99 +134,243 @@ class HomeView extends StatelessWidget {
           ],
         ),
       ),
-      body: Center(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 0.25,
-          child: Stack(
-            children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  height: MediaQuery.of(context).size.height * 0.086,
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(27.0),
-                        bottomLeft: Radius.circular(27.0),
-                      )),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar.large(
+            backgroundColor: Colors.transparent,
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: Text(
+                  'محمد',
+                  style: TextStyle(
+                      fontSize: 32, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary),
                 ),
               ),
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.76,
-                  height: MediaQuery.of(context).size.height * 0.086,
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primary,
-                      borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(27.0),
-                        bottomRight: Radius.circular(27.0),
-                      )),
+              const Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: Text(
+                  ',حياك',
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                 ),
               ),
-              Align(
-                alignment: Alignment.center,
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.925,
-                  height: MediaQuery.of(context).size.height * 0.19,
-                  decoration: BoxDecoration(
-                    // color: Theme.of(context).colorScheme.secondaryContainer,
-                    image: const DecorationImage(
-                      image: AssetImage('assets/images/eventAd.png'),
-                      fit: BoxFit.fitWidth,
-                    ),
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Theme.of(context).colorScheme.secondaryContainer,
-                        Theme.of(context).colorScheme.primaryContainer,
-                      ],
-                    ),
-                    borderRadius: BorderRadius.circular(7.0),
-                  ),
-                ),
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.925,
-                  height: MediaQuery.of(context).size.height * 0.19,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [Colors.transparent, Colors.black.withOpacity(0.8)],
-                    ),
-                    borderRadius: BorderRadius.circular(7.0),
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 8.0, bottom: 8.0, right: 8.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Gathering? \nStart here',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
+            ],
+          ),
+          SliverToBoxAdapter(
+            child: Column(
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.25,
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          height: MediaQuery.of(context).size.height * 0.086,
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(27.0),
+                                bottomLeft: Radius.circular(27.0),
+                              )),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.76,
+                          height: MediaQuery.of(context).size.height * 0.086,
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.primary,
+                              borderRadius: const BorderRadius.only(
+                                topRight: Radius.circular(27.0),
+                                bottomRight: Radius.circular(27.0),
+                              )),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.925,
+                          height: MediaQuery.of(context).size.height * 0.19,
+                          decoration: BoxDecoration(
+                            image: const DecorationImage(
+                              image: AssetImage('assets/images/eventAd.png'),
+                              fit: BoxFit.fitWidth,
+                            ),
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Theme.of(context).colorScheme.secondaryContainer,
+                                Theme.of(context).colorScheme.primaryContainer,
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(7.0),
                           ),
                         ),
-                        Icon(
-                          Icons.arrow_forward,
-                          color: Colors.white,
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.925,
+                          height: MediaQuery.of(context).size.height * 0.19,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [Colors.transparent, Colors.black.withOpacity(0.8)],
+                            ),
+                            borderRadius: BorderRadius.circular(7.0),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.only(left: 8.0, bottom: 8.0, right: 8.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Gathering? \nStart here',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0, left: 20.0),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.054,
+                    width: MediaQuery.of(context).size.width * 0.75,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      borderRadius: BorderRadius.circular(7.0),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          '“',
+                          style: TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text('Sharing',
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold,
+                            )),
+                        const Text(
+                          ' is caring”',
+                          style: TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                          ),
                         )
                       ],
                     ),
                   ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.76,
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.primary,
+                            borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(27.0),
+                              bottomRight: Radius.circular(27.0),
+                              topLeft: Radius.circular(3),
+                              bottomLeft: Radius.circular(3),
+                            )),
+                        child: Center(
+                          child: Text(
+                            'already in a party?',
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                              fontSize: 32,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    child: Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.5,
+                            height: MediaQuery.of(context).size.height * 0.086,
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(27.0),
+                                  bottomLeft: Radius.circular(27.0),
+                                )),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.36,
+                            height: MediaQuery.of(context).size.height * 0.086,
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                                borderRadius: const BorderRadius.only(
+                                  topRight: Radius.circular(27.0),
+                                  bottomRight: Radius.circular(27.0),
+                                )),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Text('Enter event code to join',
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                fontWeight: FontWeight.bold,
+                              )),
+                        ),
+                        const Align(
+                          alignment: Alignment.center,
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 8),
+                            child: JoinEventWidget(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
