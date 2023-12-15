@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:gebly/presentation/widget/join_event_widget.dart';
 
+
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
