@@ -1,5 +1,5 @@
 class Order {
-  final int orderID;
+  final int? orderID;
   final String userID;
   final int eventID;
   final int total;
@@ -43,6 +43,6 @@ class Order {
 
   @override
   String toString() {
-    return 'Order(orderID: $orderID, userID: $userID, eventID: $eventID, total: $total, createdAt: $createdAt)';
+    return 'Order{order_id: $orderID, user_id: $userID, event_id: $eventID, total: $total, created_at: $createdAt}';
   }
 }
