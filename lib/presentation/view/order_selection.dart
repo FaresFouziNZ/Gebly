@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gebly/presentation/widget/item_card.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class OrderSelection extends HookConsumerWidget {
@@ -42,8 +43,7 @@ class OrderSelection extends HookConsumerWidget {
                     height: 100,
                     decoration: BoxDecoration(
                       image: const DecorationImage(
-                        image:
-                            NetworkImage("https://via.placeholder.com/83x100"),
+                        image: NetworkImage("https://via.placeholder.com/83x100"),
                         fit: BoxFit.cover,
                       ),
                       borderRadius: BorderRadius.circular(7),
@@ -77,7 +77,7 @@ class OrderSelection extends HookConsumerWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: Container(
+            child: SizedBox(
               width: 428,
               height: 48,
               child: Row(
@@ -89,7 +89,7 @@ class OrderSelection extends HookConsumerWidget {
                     child: Container(
                       height: 48,
                       clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(color: Color(0xFFFFF8F7)),
+                      decoration: const BoxDecoration(color: Color(0xFFFFF8F7)),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -98,28 +98,25 @@ class OrderSelection extends HookConsumerWidget {
                           Expanded(
                             child: Container(
                               height: double.infinity,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Expanded(
-                                    child: Container(
+                                    child: SizedBox(
                                       width: 69,
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
                                           const Text(
                                             'Gathering',
                                             textAlign: TextAlign.center,
                                           ),
-                                          Container(
+                                          SizedBox(
                                             width: 69,
                                             height: 14,
                                             child: Stack(
@@ -130,19 +127,12 @@ class OrderSelection extends HookConsumerWidget {
                                                   child: Container(
                                                     width: 65,
                                                     height: 3,
-                                                    decoration:
-                                                        const ShapeDecoration(
+                                                    decoration: const ShapeDecoration(
                                                       color: Color(0xFFB42341),
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  100),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  100),
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.only(
+                                                          topLeft: Radius.circular(100),
+                                                          topRight: Radius.circular(100),
                                                         ),
                                                       ),
                                                     ),
@@ -167,7 +157,7 @@ class OrderSelection extends HookConsumerWidget {
                     child: Container(
                       height: 48,
                       clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(color: Color(0xFFFFF8F7)),
+                      decoration: const BoxDecoration(color: Color(0xFFFFF8F7)),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -176,8 +166,7 @@ class OrderSelection extends HookConsumerWidget {
                           Expanded(
                             child: Container(
                               height: double.infinity,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.end,
@@ -186,14 +175,11 @@ class OrderSelection extends HookConsumerWidget {
                                   Expanded(
                                     child: Container(
                                       width: 90,
-                                      padding:
-                                          const EdgeInsets.only(bottom: 14),
+                                      padding: const EdgeInsets.only(bottom: 14),
                                       child: const Column(
                                         mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
                                           Text(
                                             'Sandwiches',
@@ -219,7 +205,7 @@ class OrderSelection extends HookConsumerWidget {
                     child: Container(
                       height: 48,
                       clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(color: Color(0xFFFFF8F7)),
+                      decoration: const BoxDecoration(color: Color(0xFFFFF8F7)),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -228,8 +214,7 @@ class OrderSelection extends HookConsumerWidget {
                           Expanded(
                             child: Container(
                               height: double.infinity,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.end,
@@ -238,14 +223,11 @@ class OrderSelection extends HookConsumerWidget {
                                   Expanded(
                                     child: Container(
                                       width: 90,
-                                      padding:
-                                          const EdgeInsets.only(bottom: 14),
+                                      padding: const EdgeInsets.only(bottom: 14),
                                       child: const Column(
                                         mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
                                           Text(
                                             'Sides',
@@ -271,143 +253,11 @@ class OrderSelection extends HookConsumerWidget {
               ),
             ),
           ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                height: 150,
-                width: 400,
-                child: Container(
-                  width: 392,
-                  height: 135,
-                  color: Colors.white,
-                  child: Stack(
-                    children: [
-                      SizedBox(
-                        width: 392,
-                        height: 135,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(children: [
-                            Container(
-                              width: 100,
-                              height: 100,
-                              decoration: ShapeDecoration(
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                      "https://via.placeholder.com/100x100"),
-                                  fit: BoxFit.fill,
-                                ),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(7)),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 200,
-                              height: 100,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      '7 pieces musahab',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                        fontFamily: 'Noto Sans',
-                                        fontWeight: FontWeight.w500,
-                                        height: 0.09,
-                                        letterSpacing: 0.15,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.auto_fix_normal_sharp,
-                                          color: Color(0xFF0C8CE9),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            child: Text(
-                                              'Customize',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                color: Color(0xFF0C8CE9),
-                                                fontSize: 14,
-                                                fontFamily: 'Noto Sans',
-                                                fontWeight: FontWeight.w500,
-                                                height: 0.10,
-                                                letterSpacing: 0.10,
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        '13 SAR',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Color(0xFF524344),
-                                          fontSize: 14,
-                                          fontFamily: 'Noto Sans',
-                                          fontWeight: FontWeight.w500,
-                                          height: 0.10,
-                                          letterSpacing: 0.10,
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )
-                          ]),
-                        ),
-                      ),
-                      Positioned(
-                          height: 135,
-                          width: 360,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              SizedBox(
-                                width: 150,
-                                height: 33,
-                                child: ElevatedButton(
-                                  onPressed: () {},
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: Color(0xFFB42341)),
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.shopping_cart_outlined,
-                                        color: Colors.white,
-                                      ),
-                                      Text(
-                                        "Add to cart",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ))
-                    ],
-                  ),
-                ),
-              ),
+          const SliverToBoxAdapter(
+            child: Column(
+              children: [
+                ItemCard(),
+              ],
             ),
           ),
         ],
@@ -415,7 +265,7 @@ class OrderSelection extends HookConsumerWidget {
       bottomNavigationBar: Container(
         width: 428,
         height: 75,
-        decoration: BoxDecoration(color: Color(0xFF91002C)),
+        decoration: const BoxDecoration(color: Color(0xFF91002C)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -425,25 +275,22 @@ class OrderSelection extends HookConsumerWidget {
                 width: 256,
                 height: 54,
                 decoration: ShapeDecoration(
-                  color: Color(0xFFB42341),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(7)),
+                  color: const Color(0xFFB42341),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
                 ),
-                child: Row(
+                child: const Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(4.0),
+                      padding: EdgeInsets.all(4.0),
                       child: Icon(
                         Icons.shopping_cart_checkout,
                         color: Colors.white,
                       ),
                     ),
-                    Text("Procced to confirmation",
-                        style: TextStyle(color: Colors.white)),
+                    Text("Procced to confirmation", style: TextStyle(color: Colors.white)),
                     Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child:
-                          Text("50 SR", style: TextStyle(color: Colors.white)),
+                      padding: EdgeInsets.all(4.0),
+                      child: Text("50 SR", style: TextStyle(color: Colors.white)),
                     )
                   ],
                 ),
@@ -455,19 +302,16 @@ class OrderSelection extends HookConsumerWidget {
                 width: 67,
                 height: 54,
                 decoration: ShapeDecoration(
-                  color: Color(0xFFB42341),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(7)),
+                  color: const Color(0xFFB42341),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
                 ),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "3",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      Text("Items", style: TextStyle(color: Colors.white))
-                    ]),
+                child: const Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Text(
+                    "3",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text("Items", style: TextStyle(color: Colors.white))
+                ]),
               ),
             )
           ],
