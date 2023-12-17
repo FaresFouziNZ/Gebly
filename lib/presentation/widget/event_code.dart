@@ -51,7 +51,7 @@ class EventCode extends StatelessWidget {
                     width: 10,
                     height: 10,
                     decoration: ShapeDecoration(
-                      color: true ? const Color(0xFF7CFF89) : const Color.fromARGB(255, 239, 57, 57),
+                      color: const Color(0xFF7CFF89),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(99),
                       ),
