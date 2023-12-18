@@ -6,7 +6,6 @@ class LogInView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final checkboxIsPressed = useState<bool>(false);
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -16,6 +15,8 @@ class LogInView extends HookWidget {
           child: Stack(
             children: [
               Positioned(
+                right: MediaQuery.of(context).size.width * -0.08,
+                bottom: 0,
                 child: Image.asset(
                   'assets/images/bg.png',
                 ),
@@ -98,9 +99,7 @@ class LogInView extends HookWidget {
                               shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(7.0),
                               )),
-                              backgroundColor: checkboxIsPressed.value
-                                  ? MaterialStateProperty.all<Color>(const Color(0xFFB42341))
-                                  : MaterialStateProperty.all<Color>(const Color(0xFF4D4545))),
+                              backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFB42341))),
                           child: const Text(
                             'Login',
                             textAlign: TextAlign.center,

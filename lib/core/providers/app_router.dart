@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:gebly/presentation/view/home_view.dart';
+import 'package:gebly/presentation/view/otp_view.dart';
 import 'package:gebly/presentation/view/signup_view.dart';
 
 import 'package:gebly/presentation/view/order_selection.dart';
@@ -17,7 +18,7 @@ final routerProvider = Provider((ref) {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const SignUpView(),
+        builder: (context, state) => const OTPView(),
       ),
     ],
   );
