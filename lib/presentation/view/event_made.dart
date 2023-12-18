@@ -9,149 +9,151 @@ class EventMadeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(), //TODO: appbar
-      body: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        const SizedBox(
-          height: 20,
-        ),
-        const EventCode(), //this is the widget with the event code displayed and a copy button and status
-        const EventInfo(), //this is the widget that displays payment method, deadline, restaurant name and logo
-        Container(
-          width: 428,
-          height: 350,
-          decoration: const ShapeDecoration(
-            color: Color(0xFFB42341),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7))),
+      body: const CustomScrollView(
+        slivers: [
+          SliverAppBar.medium(
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
+            title: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text('Alo Event'),
+            ),
           ),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                width: 386,
-                height: 67,
-                decoration: const ShapeDecoration(
-                    color: Color(0xFFFFDDB8),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(7)))),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(15, 15, 0, 0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Column(
-                        children: [
-                          Text(
-                            'Participants',
-                            textAlign: TextAlign.right,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 12,
-                              fontFamily: 'Noto Sans',
-                              fontWeight: FontWeight.w400,
-                              height: 0.11,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 25,
-                          ),
-                          Text(
-                            '3',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Color(0xFFB42341),
-                              fontSize: 22,
-                              fontFamily: 'Noto Sans',
-                              fontWeight: FontWeight.w400,
-                              height: 0.06,
-                            ),
-                          )
-                        ],
-                      ),
-                      const Column(
-                        children: [
-                          Text(
-                            'Meals',
-                            textAlign: TextAlign.right,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 12,
-                              fontFamily: 'Noto Sans',
-                              fontWeight: FontWeight.w400,
-                              height: 0.11,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 25,
-                          ),
-                          Text(
-                            '7',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Color(0xFFB42341),
-                              fontSize: 22,
-                              fontFamily: 'Noto Sans',
-                              fontWeight: FontWeight.w400,
-                              height: 0.06,
-                            ),
-                          )
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 10, 15),
-                        child: Container(
-                          width: 135,
-                          height: 33,
-                          decoration: ShapeDecoration(
-                            color: const Color(0xFF91002C),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
-                          ),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                'Show order',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontFamily: 'Noto Sans',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0.10,
-                                  letterSpacing: 0.25,
-                                ),
-                              ),
-                              Icon(
-                                Icons.article_outlined,
-                                color: Colors.white,
-                              )
-                            ],
+          SliverToBoxAdapter(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                EventCode(),
+                EventInfo(),
+              ],
+            ),
+          )
+        ],
+      ),
+      bottomNavigationBar: Container(
+        height: MediaQuery.of(context).size.height * 0.5,
+        decoration: ShapeDecoration(
+          color: Theme.of(context).colorScheme.primary,
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7))),
+        ),
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.9,
+              height: MediaQuery.of(context).size.height * 0.075,
+              decoration: ShapeDecoration(
+                  color: Theme.of(context).colorScheme.tertiaryContainer,
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(7)))),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(15, 15, 0, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          'Participants',
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onTertiaryContainer,
+                            fontSize: 12,
+                            fontFamily: 'Noto Sans',
+                            fontWeight: FontWeight.w400,
+                            height: 0.11,
                           ),
                         ),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        Text(
+                          '3',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.surfaceTint,
+                            fontSize: 22,
+                            fontFamily: 'Noto Sans',
+                            fontWeight: FontWeight.w400,
+                            height: 0.06,
+                          ),
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          'Meals',
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onTertiaryContainer,
+                            fontSize: 12,
+                            fontFamily: 'Noto Sans',
+                            fontWeight: FontWeight.w400,
+                            height: 0.11,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        Text(
+                          '7',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.surfaceTint,
+                            fontSize: 22,
+                            fontFamily: 'Noto Sans',
+                            fontWeight: FontWeight.w400,
+                            height: 0.06,
+                          ),
+                        )
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 10, 15),
+                      child: Container(
+                        width: 135,
+                        height: 33,
+                        decoration: ShapeDecoration(
+                          color: Theme.of(context).colorScheme.primary,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              'Show order',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontFamily: 'Noto Sans',
+                                fontWeight: FontWeight.w400,
+                                height: 0.10,
+                                letterSpacing: 0.25,
+                              ),
+                            ),
+                            Icon(
+                              Icons.article_outlined,
+                              color: Colors.white,
+                            )
+                          ],
+                        ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              Expanded(
-                child: SizedBox(
-                  width: 386,
-                  child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      itemCount: 5,
-                      itemBuilder: (context, index) {
-                        return const UserOrder();     //this is the widget that has the user who ordered and the price of the order
-                      }),
-                ),
-              )
-            ],
-          ),
-        )
-      ]),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const UserOrder()
+          ],
+        ),
+      ),
     );
   }
 }
