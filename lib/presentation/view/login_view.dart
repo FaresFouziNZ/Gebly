@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class LoginView extends HookWidget {
-  const LoginView({super.key});
+class LogInView extends HookWidget {
+  const LogInView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,141 +10,66 @@ class LoginView extends HookWidget {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: const Text('LoginView'),
+          title: const Text('LogInView'),
         ),
         body: Center(
           child: Stack(
             children: [
+              Positioned(
+                child: Image.asset(
+                  'assets/images/bg.png',
+                ),
+              ),
               Center(
-                child: Container(
-                  width: 385,
-                  decoration: const ShapeDecoration(
-                    color: Color(0xFFFFDDB8),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(7),
-                        bottomRight: Radius.circular(7),
+                child: Column(
+                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    const Text(
+                      'Welcome back!',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: Color(0xFF232323),
+                        fontSize: 50,
+                        fontFamily: 'Readex Pro',
+                        fontWeight: FontWeight.w400,
+                        height: 1.12,
+                        letterSpacing: -0.25,
                       ),
                     ),
-                  ),
-                  child: Column(
-                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      const Text(
-                        'Create your account',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFF232323),
-                          fontSize: 57,
-                          fontFamily: 'Readex Pro',
-                          fontWeight: FontWeight.w400,
-                          height: 1.12,
-                          letterSpacing: -0.25,
+                    const SizedBox(
+                      height: 80,
+                    ),
+                    Container(
+                      width: 350,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(4),
+                          topRight: Radius.circular(4),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        width: 350,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(4),
-                            topRight: Radius.circular(4),
-                          ),
-                          color: Colors.white,
-                          border: Border(
-                            bottom: BorderSide(
-                              color: Colors.black,
-                              width: 2.0,
-                            ),
+                        color: Colors.white,
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.black,
+                            width: 2.0,
                           ),
                         ),
-                        child: const TextField(
-                          decoration: InputDecoration(
-                              focusColor: Colors.lightGreen,
-                              labelText: "Full Name",
-                              hintText: 'Enter your full name',
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.only(left: 10)),
-                        ),
                       ),
-                      const SizedBox(
-                        height: 50,
+                      child: const TextField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                            labelText: "Phone number",
+                            hintText: 'Enter your phone number',
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.only(left: 10)),
                       ),
-                      Container(
-                        width: 350,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(4),
-                            topRight: Radius.circular(4),
-                          ),
-                          color: Colors.white,
-                          border: Border(
-                            bottom: BorderSide(
-                              color: Colors.black,
-                              width: 2.0,
-                            ),
-                          ),
-                        ),
-                        child: const TextField(
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                              labelText: "Phone number",
-                              hintText: 'Enter your phone number',
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.only(left: 10)),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Checkbox(
-                              value: checkboxIsPressed.value,
-                              onChanged: (bool? value) {
-                                checkboxIsPressed.value = value!;
-                              }),
-                          const Text("I agree to the User Agreement\nand Privacy Policy"),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('Already have an account?',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontFamily: 'Readex Pro',
-                                fontWeight: FontWeight.w400,
-                                height: 1.12,
-                                letterSpacing: -0.25,
-                              )),
-                          TextButton(
-                            onPressed: () {},
-                            child: const Text(
-                              'Sign in',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'Readex Pro',
-                                fontWeight: FontWeight.w400,
-                                height: 1.12,
-                                letterSpacing: -0.25,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                  ],
                 ),
               ),
               Positioned(
@@ -177,7 +102,7 @@ class LoginView extends HookWidget {
                                   ? MaterialStateProperty.all<Color>(const Color(0xFFB42341))
                                   : MaterialStateProperty.all<Color>(const Color(0xFF4D4545))),
                           child: const Text(
-                            'Continue',
+                            'Login',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,
