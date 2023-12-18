@@ -7,58 +7,58 @@ class UserOrder extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+      padding: const EdgeInsets.only(bottom: 10),
       child: Container(
-        width: 386,
-        height: 81,
+        width: MediaQuery.of(context).size.width * 0.9,
+        height: MediaQuery.of(context).size.height * 0.09,
         decoration: ShapeDecoration(
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.surface,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
         ),
-        child: const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child: Row(
           children: [
-            CircleAvatar(
-              child: Text('A'),
-            ),
-            Text(
-              'Meals:',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontFamily: 'Noto Sans',
-                fontWeight: FontWeight.w500,
-                height: 0.09,
-                letterSpacing: 0.15,
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    child: const Text('A'),
+                  ),
+                  Text(
+                    'Abdullah',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
+                ],
               ),
             ),
-            Text(
-              '3',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color(0xFFB42341),
-                fontSize: 22,
-                fontFamily: 'Noto Sans',
-                fontWeight: FontWeight.w400,
-                height: 0.06,
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: Container(
+                width: 10,
+                height: 10,
+                decoration: ShapeDecoration(
+                  color: const Color(0xFF7CFF89),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(99),
+                  ),
+                ),
               ),
             ),
-            SizedBox(
-              width: 50,
-            ),
-            Text(
-              '50 ' 'SAR',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontFamily: 'Noto Sans',
-                fontWeight: FontWeight.w500,
-                height: 0.09,
-                letterSpacing: 0.15,
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: Text(
+                'Order confirmed',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),
