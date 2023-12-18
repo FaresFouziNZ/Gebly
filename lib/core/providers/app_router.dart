@@ -5,14 +5,14 @@ import 'package:gebly/presentation/view/event_made.dart';
 import 'package:gebly/presentation/view/event_order_page.dart';
 import 'package:gebly/presentation/view/home_view.dart';
 import 'package:gebly/presentation/view/join_event_page.dart';
+import 'package:gebly/presentation/view/login_view.dart';
 import 'package:gebly/presentation/view/order_selection.dart';
+import 'package:gebly/presentation/view/otp_view.dart';
 import 'package:gebly/presentation/view/previous_event_page.dart';
 import 'package:gebly/presentation/view/restaurant_selection.dart';
+import 'package:gebly/presentation/view/signup_view.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../presentation/view/event_made.dart';
-import '../../presentation/view/login_view.dart';
-
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
@@ -56,6 +56,15 @@ final routerProvider = Provider((ref) {
       GoRoute(
         path: '/event-order',
         builder: (context, state) => const EventOrderPage(),
+      ),GoRoute(
+        path: '/login',
+        builder: (context, state) => const LogInView(),
+      ),GoRoute(
+        path: '/signup',
+        builder: (context, state) => const SignUpView(),
+      ),GoRoute(
+        path: '/otp',
+        builder: (context, state) => const OTPView(),
       ),
     ],
   );
