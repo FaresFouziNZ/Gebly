@@ -3,14 +3,14 @@ class DatabaseUser {
   final String firstName;
   final String lastName;
   final String mobileNumber;
-  final String activeEventID;
+  final int? activeEventID;
 
   DatabaseUser({
     required this.id,
     required this.firstName,
     required this.lastName,
     required this.mobileNumber,
-    required this.activeEventID,
+    this.activeEventID,
   });
 
   factory DatabaseUser.fromJson(Map<String, dynamic> json) {

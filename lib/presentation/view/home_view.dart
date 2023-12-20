@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:gebly/core/services/authentication_services.dart';
 import 'package:gebly/presentation/widget/join_event_widget.dart';
-
+// import 'package:gebly/view_models/home_view_model.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // final viewModel = HomeViewModel();
     return Scaffold(
       drawer: Drawer(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-            topRight: Radius.circular(20),
-            bottomRight: Radius.circular(20),
+            topRight: Radius.circular(16),
+            bottomRight: Radius.circular(16),
           ),
         ),
-        backgroundColor: const Color(0xfffef1f0),
+        backgroundColor: Theme.of(context).colorScheme.outlineVariant,
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
@@ -38,8 +41,8 @@ class HomeView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(100),
                 ),
                 tileColor: const Color(0xffffffff),
-                leading: const Icon(Icons.home_outlined, color: Color(0xff000000)),
-                title: const Text('Home'),
+                leading: Icon(Icons.home_outlined, color: Theme.of(context).colorScheme.scrim),
+                title: Text('Home', style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.scrim)),
                 onTap: () {
                   Navigator.pop(context);
                 },
@@ -49,8 +52,9 @@ class HomeView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: ListTile(
                 minLeadingWidth: 0,
-                leading: const Icon(Icons.history, color: Color(0xff000000)),
-                title: const Text('Previous events'),
+                leading: Icon(Icons.history, color: Theme.of(context).colorScheme.scrim),
+                title:
+                    Text('Previous events', style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.scrim)),
                 onTap: () {
                   Navigator.pop(context);
                 },
@@ -60,40 +64,8 @@ class HomeView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: ListTile(
                 minLeadingWidth: 0,
-                leading: const Icon(Icons.add_box_outlined, color: Color(0xff000000)),
-                title: const Text('Join event'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-            const Divider(
-              color: Color(0x33000000),
-              thickness: 1,
-              indent: 15,
-              endIndent: 15,
-            ),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(25.0, 10, 0, 11),
-              child: Text('Settings', style: TextStyle(fontSize: 14, color: Color(0xff000000))),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: ListTile(
-                minLeadingWidth: 0,
-                leading: const Icon(Icons.broken_image_outlined, color: Color(0xff000000)),
-                title: const Text('Theme'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: ListTile(
-                minLeadingWidth: 0,
-                leading: const Icon(Icons.add_card_outlined, color: Color(0xff000000)),
-                title: const Text('Payment information'),
+                leading: Icon(Icons.add_box_outlined, color: Theme.of(context).colorScheme.scrim),
+                title: Text('Join event', style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.scrim)),
                 onTap: () {
                   Navigator.pop(context);
                 },
@@ -105,16 +77,16 @@ class HomeView extends StatelessWidget {
               indent: 15,
               endIndent: 15,
             ),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(25.0, 10, 0, 11),
-              child: Text('About us', style: TextStyle(fontSize: 14, color: Color(0xff000000))),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(25.0, 10, 0, 11),
+              child: Text('Settings', style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.scrim)),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: ListTile(
                 minLeadingWidth: 0,
-                leading: const Icon(Icons.question_mark, color: Color(0xff000000)),
-                title: const Text('FAQ'),
+                leading: Icon(Icons.broken_image_outlined, color: Theme.of(context).colorScheme.scrim),
+                title: Text('Theme', style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.scrim)),
                 onTap: () {
                   Navigator.pop(context);
                 },
@@ -124,10 +96,56 @@ class HomeView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: ListTile(
                 minLeadingWidth: 0,
-                leading: const Icon(Icons.message_outlined, color: Color(0xff000000)),
-                title: const Text('Contact us'),
+                leading: Icon(Icons.add_card_outlined, color: Theme.of(context).colorScheme.scrim),
+                title: Text('Payment information',
+                    style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.scrim)),
                 onTap: () {
                   Navigator.pop(context);
+                },
+              ),
+            ),
+            const Divider(
+              color: Color(0x33000000),
+              thickness: 1,
+              indent: 15,
+              endIndent: 15,
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(25.0, 10, 0, 11),
+              child: Text('About us', style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.scrim)),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: ListTile(
+                minLeadingWidth: 0,
+                leading: Icon(Icons.question_mark, color: Theme.of(context).colorScheme.scrim),
+                title: Text('FAQ', style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.scrim)),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: ListTile(
+                minLeadingWidth: 0,
+                leading: Icon(Icons.message_outlined, color: Theme.of(context).colorScheme.scrim),
+                title: Text('Contact us', style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.scrim)),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: ListTile(
+                minLeadingWidth: 0,
+                leading: Icon(Icons.logout, color: Theme.of(context).colorScheme.scrim),
+                title: Text('log out', style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.scrim)),
+                onTap: () {
+                  AuthenticationServices().signOut();
+                  Navigator.pop(context);
+                  context.go('/login');
                 },
               ),
             ),
@@ -212,37 +230,40 @@ class HomeView extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.925,
-                          height: MediaQuery.of(context).size.height * 0.19,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [Colors.transparent, Colors.black.withOpacity(0.8)],
+                      GestureDetector(
+                        onTap: () => context.push('/select-restaurant'),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.925,
+                            height: MediaQuery.of(context).size.height * 0.19,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [Colors.transparent, Colors.black.withOpacity(0.8)],
+                              ),
+                              borderRadius: BorderRadius.circular(7.0),
                             ),
-                            borderRadius: BorderRadius.circular(7.0),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.only(left: 8.0, bottom: 8.0, right: 8.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Gathering? \nStart here',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 24,
+                            child: const Padding(
+                              padding: EdgeInsets.only(left: 8.0, bottom: 8.0, right: 8.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Gathering? \nStart here',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                    ),
                                   ),
-                                ),
-                                Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                )
-                              ],
+                                  Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.white,
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),

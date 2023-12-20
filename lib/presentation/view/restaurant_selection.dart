@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gebly/core/services/database_queries.dart';
 import 'package:gebly/presentation/widget/restaurant_container.dart';
 
 class RestaurantSelectionPage extends StatelessWidget {
@@ -43,7 +44,7 @@ class RestaurantSelectionPage extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.3,
+                    height: MediaQuery.of(context).size.height * 0.31,
                     color: Theme.of(context).colorScheme.primary,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 12, right: 12, top: 8),
@@ -84,24 +85,36 @@ class RestaurantSelectionPage extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const Wrap(
-                            children: [RestaurantCard(), RestaurantCard()],
-                          ),
+                          FutureBuilder(
+                              future: DatabaseServices().getNearRestaurants(limit: 2),
+                              builder: (context, snapshot) {
+                                return Wrap(
+                                  children: snapshot.data
+                                          ?.map((restaurant) => RestaurantCard(
+                                                restaurant: restaurant,
+                                              ))
+                                          .toList() ??
+                                      [],
+                                );
+                              }),
                         ],
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 8),
-                    child: Wrap(
-                      children: [
-                        RestaurantCard(),
-                        RestaurantCard(),
-                        RestaurantCard(),
-                        RestaurantCard(),
-                      ],
-                    ),
-                  ),
+                  FutureBuilder(
+                      future: DatabaseServices().getNearRestaurants(),
+                      builder: (context, snapshot) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Wrap(
+                              children: snapshot.data
+                                      ?.map((restaurant) => RestaurantCard(
+                                            restaurant: restaurant,
+                                          ))
+                                      .toList() ??
+                                  []),
+                        );
+                      }),
                 ],
               ),
             ),

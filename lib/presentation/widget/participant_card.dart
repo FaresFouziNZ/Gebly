@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:gebly/core/models/database_user.dart';
+import 'package:gebly/core/providers/event_provider.dart';
+import 'package:gebly/core/services/database_queries.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ParticipantCard extends StatelessWidget {
+class ParticipantCard extends ConsumerWidget {
+  final DatabaseUser user;
   const ParticipantCard({
     super.key,
+    required this.user,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: Container(
@@ -18,37 +24,39 @@ class ParticipantCard extends StatelessWidget {
             Radius.circular(10),
           ),
         ),
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: EdgeInsets.only(left: 8),
+              padding: const EdgeInsets.only(left: 8),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 16),
+                    padding: const EdgeInsets.only(left: 16),
                     child: CircleAvatar(
-                      radius: 20,
-                      backgroundImage: NetworkImage(
-                        'https://via.placeholder.com/83x100',
-                      ),
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      child: Text(user.firstName[0].toUpperCase()),
                     ),
                   ),
-                  Text('Tarek Aljawi')
+                  Text('${user.firstName} ${user.lastName}'),
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 16),
-              child: Text(
-                '13 SAR',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              padding: const EdgeInsets.only(right: 16),
+              child: FutureBuilder(
+                  future: DatabaseServices().getOrder(uid: user.id, eventID: ref.watch(eventProvider).id!),
+                  builder: (context, snapshot) {
+                    return Text(
+                      "${snapshot.data?.orderTotal.toString() ?? '0.00'} SAR",
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  }),
             ),
           ],
         ),

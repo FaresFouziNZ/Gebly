@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:gebly/core/models/item.dart';
 
 class SummeryItemCard extends StatelessWidget {
+  final Item item;
   const SummeryItemCard({
     super.key,
+    required this.item,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(top: 4, left: 8, right: 8),
       child: Stack(
         children: [
           SizedBox(
@@ -17,7 +20,10 @@ class SummeryItemCard extends StatelessWidget {
             child: Column(children: [
               Container(
                 height: MediaQuery.of(context).size.height * 0.12,
-                color: Theme.of(context).colorScheme.surface,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surface,
+                  borderRadius: BorderRadius.circular(7),
+                ),
                 child: Row(
                   children: [
                     Padding(
@@ -34,33 +40,20 @@ class SummeryItemCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("7 pieces mushroom"),
-                          // GestureDetector(
-                          //   onTap: () {},
-                          //   child: Row(
-                          //     mainAxisSize: MainAxisSize.min,
-                          //     children: [
-                          //       Icon(Icons.edit, size: 15, color: Theme.of(context).colorScheme.secondary),
-                          //       const SizedBox(width: 5),
-                          //       Text.rich(
-                          //         TextSpan(
-                          //           text: 'Customize',
-                          //           style: TextStyle(
-                          //             color: Theme.of(context).colorScheme.secondary,
-                          //             fontWeight: FontWeight.bold,
-                          //           ),
-                          //         ),
-                          //       )
-                          //     ],
-                          //   ),
-                          // ),
-                          Text("13 SAR"),
+                          Text(
+                            item.name,
+                            overflow: TextOverflow.clip,
+                            style: const TextStyle(
+                              fontSize: 13,
+                            ),
+                          ),
+                          Text("${item.price} SAR"),
                         ],
                       ),
                     ),
@@ -72,21 +65,6 @@ class SummeryItemCard extends StatelessWidget {
               )
             ]),
           ),
-          // Positioned(
-          //   right: 25,
-          //   bottom: 0,
-          //   child: ElevatedButton.icon(
-          //       onPressed: () {},
-          //       icon: const Icon(Icons.add_shopping_cart),
-          //       label: const Text('Add to cart'),
-          //       style: ElevatedButton.styleFrom(
-          //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
-          //         foregroundColor: Colors.white,
-          //         backgroundColor: Theme.of(context).colorScheme.primary,
-          //         disabledForegroundColor: Colors.grey.withOpacity(0.38),
-          //         disabledBackgroundColor: Colors.grey.withOpacity(0.12),
-          //       )),
-          // )
         ],
       ),
     );

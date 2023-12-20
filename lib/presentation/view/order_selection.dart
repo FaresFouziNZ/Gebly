@@ -1,19 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:gebly/core/models/restaurant.dart';
+import 'package:gebly/core/providers/cart_provider.dart';
 import 'package:gebly/presentation/widget/item_card.dart';
+import 'package:gebly/view_models/order_selection_view_model.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class OrderSelection extends HookConsumerWidget {
-  const OrderSelection({super.key});
+class OrderSelection extends ConsumerStatefulWidget {
+  final Restaurant restaurant;
+  const OrderSelection({super.key, required this.restaurant});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<OrderSelection> createState() => _OrderSelectionState();
+}
+
+class _OrderSelectionState extends ConsumerState<OrderSelection> {
+  final viewModel = OrderSelectionViewModel();
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
             backgroundColor: Colors.transparent,
             elevation: 0.0,
-            title: const Text('HomeView'),
+            title: GestureDetector(
+              child: Text(widget.restaurant.name),
+              onTap: () {
+                final x = ref.read(cartProvider);
+              },
+            ),
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(4.0),
               child: Row(
@@ -34,51 +50,54 @@ class OrderSelection extends HookConsumerWidget {
           ),
           SliverToBoxAdapter(
             child: SizedBox(
-              height: 100,
-              width: 392,
-              child: Row(
-                children: [
-                  Container(
-                    width: 83,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      image: const DecorationImage(
-                        image: NetworkImage("https://via.placeholder.com/83x100"),
-                        fit: BoxFit.cover,
+              height: MediaQuery.of(context).size.height * 0.12,
+              // width: MediaQuery.of(context).size.width * 0.9,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 83,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(widget.restaurant.logoUrl),
+                          fit: BoxFit.cover,
+                        ),
+                        borderRadius: BorderRadius.circular(7),
                       ),
-                      borderRadius: BorderRadius.circular(7),
                     ),
-                  ),
-                  const SizedBox(width: 16),
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Albaik',
-                      ),
-                      Row(
-                        children: [
-                          Icon(Icons.lock_clock),
-                          SizedBox(width: 8),
-                          Text(
-                            'Working Hours',
-                          ),
-                          SizedBox(width: 8),
-                          Text(
-                            '11:00am - 3:00 am',
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+                    const SizedBox(width: 16),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          widget.restaurant.name,
+                        ),
+                        const Row(
+                          children: [
+                            Icon(Icons.watch_later_outlined),
+                            SizedBox(width: 6),
+                            Text(
+                              'Working Hours',
+                            ),
+                            SizedBox(width: 6),
+                            Text(
+                              '11:00am - 3:00 am',
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
           SliverToBoxAdapter(
             child: SizedBox(
-              width: 428,
+              width: 426,
               height: 48,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -99,7 +118,7 @@ class OrderSelection extends HookConsumerWidget {
                             child: Container(
                               height: double.infinity,
                               padding: const EdgeInsets.symmetric(horizontal: 16),
-                              child: Column(
+                              child: const Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -112,7 +131,7 @@ class OrderSelection extends HookConsumerWidget {
                                         mainAxisAlignment: MainAxisAlignment.end,
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
-                                          const Text(
+                                          Text(
                                             'Gathering',
                                             textAlign: TextAlign.center,
                                           ),
@@ -121,23 +140,23 @@ class OrderSelection extends HookConsumerWidget {
                                             height: 14,
                                             child: Stack(
                                               children: [
-                                                Positioned(
-                                                  left: 2,
-                                                  top: 11,
-                                                  child: Container(
-                                                    width: 65,
-                                                    height: 3,
-                                                    decoration: const ShapeDecoration(
-                                                      color: Color(0xFFB42341),
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.only(
-                                                          topLeft: Radius.circular(100),
-                                                          topRight: Radius.circular(100),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
+                                                // Positioned(
+                                                //   left: 2,
+                                                //   top: 11,
+                                                //   child: Container(
+                                                //     width: 65,
+                                                //     height: 3,
+                                                //     decoration: const ShapeDecoration(
+                                                //       color: Color(0xFFB42341),
+                                                //       shape: RoundedRectangleBorder(
+                                                //         borderRadius: BorderRadius.only(
+                                                //           topLeft: Radius.circular(100),
+                                                //           topRight: Radius.circular(100),
+                                                //         ),
+                                                //       ),
+                                                //     ),
+                                                //   ),
+                                                // ),
                                               ],
                                             ),
                                           ),
@@ -253,46 +272,75 @@ class OrderSelection extends HookConsumerWidget {
               ),
             ),
           ),
-          const SliverToBoxAdapter(
-            child: Column(
-              children: [
-                ItemCard(),
-              ],
-            ),
+          SliverToBoxAdapter(
+            child: FutureBuilder(
+                future: null,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  // viewModel.setMenu(snapshot.data ?? [], ref);
+                  return Column(
+                    children: ref
+                        .read(cartProvider)
+                        .keys
+                        .map((item) => ItemCard(
+                            item: item,
+                            onTap: () {
+                              setState(() {});
+                            }))
+                        .toList(),
+                  );
+                }),
           ),
         ],
       ),
       bottomNavigationBar: Container(
-        width: 428,
-        height: 75,
-        decoration: const BoxDecoration(color: Color(0xFF91002C)),
+        // width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 0.085,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primary,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(7),
+            topRight: Radius.circular(7),
+          ),
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: 256,
-                height: 54,
-                decoration: ShapeDecoration(
-                  color: const Color(0xFFB42341),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
-                ),
-                child: const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: Icon(
-                        Icons.shopping_cart_checkout,
-                        color: Colors.white,
+              child: GestureDetector(
+                onTap: () {
+                  if (viewModel.ableToProceed(ref)) {
+                    context.push('/order-confirm');
+                  }
+                },
+                child: Container(
+                  width: 256,
+                  height: 54,
+                  decoration: ShapeDecoration(
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Icon(
+                          Icons.shopping_cart_checkout,
+                          color: Theme.of(context).colorScheme.onPrimaryContainer,
+                        ),
                       ),
-                    ),
-                    Text("Procced to confirmation", style: TextStyle(color: Colors.white)),
-                    Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: Text("50 SR", style: TextStyle(color: Colors.white)),
-                    )
-                  ],
+                      Text("Proceed to confirmation",
+                          style: TextStyle(color: Theme.of(context).colorScheme.onPrimaryContainer)),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(4.0),
+                      //   child: Text("50 SR", style: TextStyle(color: Theme.of(context).colorScheme.onPrimaryContainer)),
+                      // )
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -302,15 +350,15 @@ class OrderSelection extends HookConsumerWidget {
                 width: 67,
                 height: 54,
                 decoration: ShapeDecoration(
-                  color: const Color(0xFFB42341),
+                  color: Theme.of(context).colorScheme.primaryContainer,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
                 ),
-                child: const Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Text(
-                    "3",
-                    style: TextStyle(color: Colors.white),
+                    viewModel.getCartItemCount(ref),
+                    style: TextStyle(color: Theme.of(context).colorScheme.onPrimaryContainer),
                   ),
-                  Text("Items", style: TextStyle(color: Colors.white))
+                  Text("Items", style: TextStyle(color: Theme.of(context).colorScheme.onPrimaryContainer))
                 ]),
               ),
             )

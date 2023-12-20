@@ -5,7 +5,7 @@ class Restaurant {
   final double longitude;
   final double latitude;
   final String openHours;
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   Restaurant({
     required this.id,
@@ -14,12 +14,12 @@ class Restaurant {
     required this.longitude,
     required this.latitude,
     required this.openHours,
-    required this.createdAt,
+    this.createdAt,
   });
 
   factory Restaurant.fromJson(Map<String, dynamic> json) {
     return Restaurant(
-      id: json['id'],
+      id: json['resturant_id'],
       name: json['name'],
       logoUrl: json['logo_url'],
       longitude: json['longitude'],
@@ -31,13 +31,13 @@ class Restaurant {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      'resturant_id': id,
       'name': name,
       'logo_url': logoUrl,
       'longitude': longitude,
       'latitude': latitude,
       'open_hours': openHours,
-      'created_at': createdAt.toIso8601String(),
+      'created_at': createdAt?.toIso8601String(),
     };
   }
 

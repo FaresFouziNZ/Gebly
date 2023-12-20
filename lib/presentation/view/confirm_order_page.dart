@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:gebly/presentation/widget/summary_item_total.dart';
 import 'package:gebly/presentation/widget/summery_item_card.dart';
+import 'package:gebly/view_models/confirm_order_view_model.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ConfirmOrderPage extends StatelessWidget {
+class ConfirmOrderPage extends ConsumerStatefulWidget {
   const ConfirmOrderPage({super.key});
 
   @override
+  ConsumerState<ConfirmOrderPage> createState() => _ConfirmOrderPageState();
+}
+
+class _ConfirmOrderPageState extends ConsumerState<ConfirmOrderPage> {
+  @override
   Widget build(BuildContext context) {
+    final viewModel = ConfirmOrderViewModel();
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -39,8 +49,8 @@ class ConfirmOrderPage extends StatelessWidget {
                   Container(
                     height: MediaQuery.of(context).size.height,
                     color: Theme.of(context).colorScheme.tertiaryContainer,
-                    child: const Column(
-                      children: [SummeryItemCard()],
+                    child: Column(
+                      children: viewModel.getCartItems(ref).map((item) => SummeryItemCard(item: item)).toList(),
                     ),
                   ),
                 ],
@@ -66,30 +76,13 @@ class ConfirmOrderPage extends StatelessWidget {
                   children: [
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.15,
-                      child: const Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(top: 24, left: 16, right: 16),
-                            child: Row(
-                              children: [
-                                Text(
-                                  'x1',
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(width: 10),
-                                Text(
-                                  '7 pieces mushroom',
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                                ),
-                                Spacer(),
-                                Text(
-                                  '13 SAR',
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                                )
-                              ],
-                            ),
-                          )
-                        ],
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 24, left: 16, right: 16),
+                          child: Column(
+                            children: viewModel.getCartItems(ref).map((item) => SummaryItemTotal(item: item)).toList(),
+                          ),
+                        ),
                       ),
                     ),
                     Divider(
@@ -98,18 +91,18 @@ class ConfirmOrderPage extends StatelessWidget {
                       endIndent: 16,
                       indent: 16,
                     ),
-                    const Padding(
-                      padding: EdgeInsets.all(16.0),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
                       child: Row(
                         children: [
-                          Text(
+                          const Text(
                             'Total',
                             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Text(
-                            '13 SAR',
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                            '${viewModel.getTotalPrice(ref).toStringAsFixed(2)} SAR',
+                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                           )
                         ],
                       ),
@@ -117,7 +110,12 @@ class ConfirmOrderPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          await viewModel.confirmOrder(ref);
+                          if (mounted) {
+                            context.go('/event-made');
+                          }
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Theme.of(context).colorScheme.primary,
                           foregroundColor: Colors.white,

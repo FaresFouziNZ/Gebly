@@ -1,8 +1,13 @@
 import 'package:flutter/widgets.dart';
+import 'package:gebly/core/models/event.dart';
+import 'package:gebly/core/models/restaurant.dart';
+import 'package:gebly/core/providers/event_provider.dart';
+import 'package:gebly/core/services/authentication_services.dart';
 import 'package:gebly/presentation/view/confirm_order_page.dart';
 import 'package:gebly/presentation/view/event_info_page.dart';
 import 'package:gebly/presentation/view/event_made.dart';
 import 'package:gebly/presentation/view/event_order_page.dart';
+import 'package:gebly/presentation/view/hello_page.dart';
 import 'package:gebly/presentation/view/home_view.dart';
 import 'package:gebly/presentation/view/join_event_page.dart';
 import 'package:gebly/presentation/view/login_view.dart';
@@ -19,8 +24,18 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 final routerProvider = Provider((ref) {
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/home',
+    initialLocation: ref.watch(eventProvider).id == -1
+        ? '/hello'
+        : AuthenticationServices().currentUser == null
+            ? '/login'
+            : ref.watch(eventProvider).id == 0
+                ? '/home'
+                : '/event-made',
     routes: [
+      GoRoute(
+        path: '/hello',
+        builder: (context, state) => const HelloPage(),
+      ),
       GoRoute(
         path: '/home',
         builder: (context, state) => const HomeView(),
@@ -39,7 +54,7 @@ final routerProvider = Provider((ref) {
       ),
       GoRoute(
         path: '/order-selection',
-        builder: (context, state) => const OrderSelection(),
+        builder: (context, state) => OrderSelection(restaurant: state.extra as Restaurant),
       ),
       GoRoute(
         path: '/order-confirm',
@@ -51,20 +66,23 @@ final routerProvider = Provider((ref) {
       ),
       GoRoute(
         path: '/event-info',
-        builder: (context, state) => const EventInfoPage(),
+        builder: (context, state) => EventInfoPage(event: state.extra as Event),
       ),
       GoRoute(
         path: '/event-order',
         builder: (context, state) => const EventOrderPage(),
-      ),GoRoute(
+      ),
+      GoRoute(
         path: '/login',
         builder: (context, state) => const LogInView(),
-      ),GoRoute(
-        path: '/signup',
-        builder: (context, state) => const SignUpView(),
-      ),GoRoute(
+      ),
+      GoRoute(
+        path: '/sign-up',
+        builder: (context, state) => SignUpView(phoneNumber: state.extra as String),
+      ),
+      GoRoute(
         path: '/otp',
-        builder: (context, state) => const OTPView(),
+        builder: (context, state) => OTPView(phoneNumber: state.extra as String),
       ),
     ],
   );

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gebly/core/models/database_user.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class UserOrder extends HookConsumerWidget {
-  const UserOrder({super.key});
+  final DatabaseUser user;
+  const UserOrder({super.key, required this.user});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,10 +27,10 @@ class UserOrder extends HookConsumerWidget {
                 children: [
                   CircleAvatar(
                     backgroundColor: Theme.of(context).colorScheme.primary,
-                    child: const Text('A'),
+                    child: Text(user.firstName[0].toUpperCase()),
                   ),
                   Text(
-                    'Abdullah',
+                    user.firstName,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onSurface,
                     ),

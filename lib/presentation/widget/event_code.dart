@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gebly/core/models/event.dart';
+import 'package:gebly/core/providers/event_provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class EventCode extends StatelessWidget {
-  const EventCode({super.key});
+class EventCode extends ConsumerWidget {
+  final Event? event1;
+  const EventCode({super.key, this.event1});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final event = ref.watch(eventProvider);
     String code = 'BRYDLT';
     return Padding(
       padding: const EdgeInsets.only(top: 16, bottom: 8),
@@ -22,7 +27,7 @@ class EventCode extends StatelessWidget {
               left: 61,
               top: 64,
               child: Text(
-                code,
+                event.code == '' ? event1?.code ?? "null" : event.code,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
                   fontSize: 57,

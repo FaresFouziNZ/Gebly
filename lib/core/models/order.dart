@@ -1,16 +1,18 @@
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 class Order {
   final int? orderID;
   final String userID;
   final int eventID;
-  final int total;
-  final DateTime createdAt;
+  final double orderTotal;
+  final DateTime? createdAt;
 
   Order({
-    required this.orderID,
+    this.orderID,
     required this.userID,
     required this.eventID,
-    required this.total,
-    required this.createdAt,
+    required this.orderTotal,
+    this.createdAt,
   });
 
   factory Order.fromJson(Map<String, dynamic> json) {
@@ -18,7 +20,7 @@ class Order {
       orderID: json['order_id'],
       userID: json['user_id'],
       eventID: json['event_id'],
-      total: json['total'],
+      orderTotal: toDouble(json['order_total'])!,
       createdAt: DateTime.parse(json['created_at']),
     );
   }
@@ -28,8 +30,8 @@ class Order {
       'order_id': orderID,
       'user_id': userID,
       'event_id': eventID,
-      'total': total,
-      'created_at': createdAt.toIso8601String(),
+      'order_total': orderTotal,
+      'created_at': createdAt?.toIso8601String(),
     };
   }
 
@@ -37,12 +39,12 @@ class Order {
     return orderID == other.orderID &&
         userID == other.userID &&
         eventID == other.eventID &&
-        total == other.total &&
+        orderTotal == other.orderTotal &&
         createdAt == other.createdAt;
   }
 
   @override
   String toString() {
-    return 'Order{order_id: $orderID, user_id: $userID, event_id: $eventID, total: $total, created_at: $createdAt}';
+    return 'Order{order_id: $orderID, user_id: $userID, event_id: $eventID, total: $orderTotal, created_at: $createdAt}';
   }
 }

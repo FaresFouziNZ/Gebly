@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:gebly/core/providers/event_provider.dart';
+import 'package:gebly/core/services/database_queries.dart';
 import 'package:gebly/presentation/widget/event_order_card.dart';
 import 'package:gebly/presentation/widget/participant_card.dart';
+import 'package:gebly/view_models/event_order_view_model.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class EventOrderPage extends StatelessWidget {
+class EventOrderPage extends ConsumerWidget {
   const EventOrderPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final viewModel = EventOrderViewModel();
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -40,25 +45,15 @@ class EventOrderPage extends StatelessWidget {
                   Container(
                     height: MediaQuery.of(context).size.height * 0.6,
                     color: Theme.of(context).colorScheme.tertiaryContainer,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          const EventOrderCard(),
-                          const EventOrderCard(),
-                          const EventOrderCard(),
-                          const EventOrderCard(),
-                          const EventOrderCard(),
-                          const EventOrderCard(),
-                          const EventOrderCard(),
-                          const EventOrderCard(),
-                          const EventOrderCard(),
-                          const EventOrderCard(),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.1,
-                          )
-                        ],
-                      ),
-                    ),
+                    child: FutureBuilder(
+                        future: viewModel.getItems(eventID: ref.read(eventProvider).id!),
+                        builder: (context, snapshot) {
+                          return SingleChildScrollView(
+                            child: Column(
+                              children: snapshot.data?.keys.map((e) => const EventOrderCard()).toList() ?? [],
+                            ),
+                          );
+                        }),
                   ),
                 ],
               ),
@@ -85,11 +80,18 @@ class EventOrderPage extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 24, color: Theme.of(context).colorScheme.onPrimary, fontWeight: FontWeight.bold),
                 ),
-                const ParticipantCard(),
-                const ParticipantCard(),
-                const ParticipantCard(),
-                const ParticipantCard(),
-                const ParticipantCard(),
+                FutureBuilder(
+                    future: DatabaseServices().getInvolvedUsers(eventID: ref.read(eventProvider).id!),
+                    builder: (context, snapshot) {
+                      return Column(
+                        children: snapshot.data
+                                ?.map((e) => ParticipantCard(
+                                      user: e,
+                                    ))
+                                .toList() ??
+                            [],
+                      );
+                    })
               ],
             ),
           ),

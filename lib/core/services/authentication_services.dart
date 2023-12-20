@@ -23,11 +23,11 @@ class AuthenticationServices {
   }
 
   Future signInWithOtp({required String phone}) async {
-    await auth.signInWithOtp(phone: phone);
+    await auth.signInWithOtp(phone: phone, channel: OtpChannel.whatsapp);
   }
 
-  Future verifyOtp({required String phone, required String code}) async {
-    AuthResponse response = await auth.verifyOTP(token: code, type: OtpType.sms);
+  Future<bool> verifyOtp({required String phone, required String code}) async {
+    AuthResponse response = await auth.verifyOTP(phone: phone, token: code, type: OtpType.sms);
     if (response.user == null) {
       throw Exception('Error verifying OTP');
     }

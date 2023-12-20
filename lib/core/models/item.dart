@@ -4,7 +4,7 @@ class Item {
   final double price;
   final String photoUrl;
   final int restaurantID;
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   Item({
     required this.id,
@@ -12,15 +12,15 @@ class Item {
     required this.price,
     required this.photoUrl,
     required this.restaurantID,
-    required this.createdAt,
+    this.createdAt,
   });
 
   factory Item.fromJson(Map<String, dynamic> json) {
     return Item(
-      id: json['id'],
+      id: json['item_id'],
       name: json['name'],
-      price: json['price'],
-      photoUrl: json['photo_url'],
+      price: json['price'] + 0.0,
+      photoUrl: json['photo_url'] ?? "",
       restaurantID: json['restaurant_id'],
       createdAt: DateTime.parse(json['created_at']),
     );
@@ -28,12 +28,12 @@ class Item {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      'item_id': id,
       'name': name,
       'price': price,
       'photo_url': photoUrl,
       'restaurant_id': restaurantID,
-      'created_at': createdAt.toIso8601String(),
+      'created_at': createdAt?.toIso8601String(),
     };
   }
 
