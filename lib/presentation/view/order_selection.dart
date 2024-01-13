@@ -27,7 +27,7 @@ class _OrderSelectionState extends ConsumerState<OrderSelection> {
             title: GestureDetector(
               child: Text(widget.restaurant.name),
               onTap: () {
-                final x = ref.read(cartProvider);
+                // final x = ref.read(cartProvider);
               },
             ),
             bottom: PreferredSize(

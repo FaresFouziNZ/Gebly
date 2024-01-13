@@ -1,5 +1,4 @@
 import 'package:gebly/core/models/event.dart';
-import 'package:gebly/core/services/database_queries.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final eventProvider = StateProvider(
@@ -16,6 +15,6 @@ final eventProvider = StateProvider(
   ),
 );
 
-final eventFuture = FutureProvider<Event>((ref) async {
-  return await DatabaseServices().getUserActiveEvent();
-});
+// final eventFuture = FutureProvider<Event>((ref) async {
+//   return await DatabaseServices().getUserActiveEvent();
+// });

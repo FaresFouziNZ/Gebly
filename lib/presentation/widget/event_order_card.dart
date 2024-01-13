@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:gebly/core/models/item.dart';
 
 class EventOrderCard extends StatelessWidget {
+  final Item item;
+  final int? quantity;
   const EventOrderCard({
     super.key,
+    required this.item,
+    required this.quantity,
   });
 
   @override
@@ -37,15 +42,15 @@ class EventOrderCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(top: 12),
-                            child: Text("7 pieces mushroom"),
+                            padding: const EdgeInsets.only(top: 12),
+                            child: Text(item.name),
                           ),
                         ],
                       ),
@@ -58,20 +63,20 @@ class EventOrderCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 12),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12),
                             child: Text(
-                              "x3",
-                              style: TextStyle(
+                              "x$quantity",
+                              style: const TextStyle(
                                 fontSize: 22,
                               ),
                             ),
                           ),
-                          CircleAvatar(
-                            radius: 14,
-                            backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                            child: Icon(Icons.edit, size: 10, color: Theme.of(context).colorScheme.onPrimaryContainer),
-                          )
+                          // CircleAvatar(
+                          //   radius: 14,
+                          //   backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                          //   child: Icon(Icons.edit, size: 10, color: Theme.of(context).colorScheme.onPrimaryContainer),
+                          // )
                         ],
                       ),
                     )

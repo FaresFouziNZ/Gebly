@@ -66,7 +66,7 @@ class EventInfoPage extends ConsumerWidget {
                     onPressed: () async {
                       ref.read(eventProvider.notifier).state = event;
                       viewModel.joinEvent(ref, event);
-                      context.go('/event-made');
+                      context.go('/order-selection');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Theme.of(context).colorScheme.primary,

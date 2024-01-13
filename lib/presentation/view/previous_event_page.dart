@@ -22,15 +22,15 @@ class PreviousEventPage extends StatelessWidget {
               child: Row(
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.75,
+                    width: MediaQuery.of(context).size.width,
                     height: 4.0,
                     color: Theme.of(context).colorScheme.primary,
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.25,
-                    height: 4.0,
-                    color: Colors.black12,
-                  ),
+                  // Container(
+                  //   width: MediaQuery.of(context).size.width * 0.25,
+                  //   height: 4.0,
+                  //   color: Colors.black12,
+                  // ),
                 ],
               ),
             ),

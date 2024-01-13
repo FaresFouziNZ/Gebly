@@ -18,20 +18,15 @@ class EventOrderPage extends ConsumerWidget {
           SliverAppBar(
             backgroundColor: Colors.transparent,
             elevation: 0.0,
-            title: const Text('Confirm Order'),
+            title: const Text('All Orders'),
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(4.0),
               child: Row(
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.75,
+                    width: MediaQuery.of(context).size.width,
                     height: 4.0,
                     color: Theme.of(context).colorScheme.primary,
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.25,
-                    height: 4.0,
-                    color: Colors.black12,
                   ),
                 ],
               ),
@@ -42,18 +37,37 @@ class EventOrderPage extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Stack(
                 children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.6,
-                    color: Theme.of(context).colorScheme.tertiaryContainer,
-                    child: FutureBuilder(
-                        future: viewModel.getItems(eventID: ref.read(eventProvider).id!),
-                        builder: (context, snapshot) {
-                          return SingleChildScrollView(
-                            child: Column(
-                              children: snapshot.data?.keys.map((e) => const EventOrderCard()).toList() ?? [],
-                            ),
-                          );
-                        }),
+                  Column(
+                    children: [
+                      Container(
+                        // height: MediaQuery.of(context).size.height * 0.6,
+                        color: Theme.of(context).colorScheme.tertiaryContainer,
+                        child: FutureBuilder(
+                            future: viewModel.getItems(eventID: ref.read(eventProvider).id!, ref: ref),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState != ConnectionState.done) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                              return SingleChildScrollView(
+                                child: Column(
+                                  children: snapshot.data?.keys
+                                          .map((key) => EventOrderCard(
+                                                item: key,
+                                                quantity: snapshot.data?[key],
+                                              ))
+                                          .toList() ??
+                                      [],
+                                ),
+                              );
+                            }),
+                      ),
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        color: Theme.of(context).colorScheme.tertiaryContainer,
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -75,14 +89,24 @@ class EventOrderPage extends ConsumerWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text(
-                  'Participants',
-                  style: TextStyle(
-                      fontSize: 24, color: Theme.of(context).colorScheme.onPrimary, fontWeight: FontWeight.bold),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    'Participants',
+                    style: TextStyle(
+                        fontSize: 24, color: Theme.of(context).colorScheme.onPrimary, fontWeight: FontWeight.bold),
+                  ),
                 ),
                 FutureBuilder(
                     future: DatabaseServices().getInvolvedUsers(eventID: ref.read(eventProvider).id!),
                     builder: (context, snapshot) {
+                      if (snapshot.connectionState != ConnectionState.done) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
+                        );
+                      }
                       return Column(
                         children: snapshot.data
                                 ?.map((e) => ParticipantCard(

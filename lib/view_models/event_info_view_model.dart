@@ -1,5 +1,4 @@
 import 'package:gebly/core/models/event.dart';
-import 'package:gebly/core/providers/event_provider.dart';
 import 'package:gebly/core/services/database_queries.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

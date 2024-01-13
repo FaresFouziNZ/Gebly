@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:gebly/core/models/item.dart';
 import 'package:gebly/presentation/widget/item_card.dart';
 
-import '../../core/models/item.dart';
 
 void main() {
   testWidgets('ItemCard displays title and description',

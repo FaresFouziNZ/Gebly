@@ -17,7 +17,7 @@ void main() {
       code: '123456',
     );
 
-    await tester.pumpWidget(MaterialApp(
+    await tester.pumpWidget(const MaterialApp(
       home: Scaffold(
         body: EventInfo(),
       ),

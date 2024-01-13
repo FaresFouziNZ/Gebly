@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gebly/constants/themes.dart';
 import 'package:gebly/core/providers/app_router.dart';
+import 'package:gebly/core/providers/cart_provider.dart';
 import 'package:gebly/core/providers/event_provider.dart';
 import 'package:gebly/core/services/database_queries.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -33,18 +34,22 @@ class _MainAppState extends ConsumerState<MainApp> {
   @override
   Widget build(BuildContext context) {
     final router = ref.watch(routerProvider);
-    DatabaseServices().getUserActiveEvent();
+    // DatabaseServices().getUserActiveEvent();
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: router,
       theme: ThemeData(colorScheme: lightColorScheme, scaffoldBackgroundColor: const Color(0xFFFFEEDE)),
       darkTheme: ThemeData(colorScheme: darkColorScheme),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
     );
   }
 
   void loadEvent() async {
     final event = await DatabaseServices().getUserActiveEvent();
+    if (event.id! > 0) {
+      final cart = await DatabaseServices().getCart(eventID: event.id!);
+      ref.read(cartProvider.notifier).state = cart;
+    }
     ref.read(eventProvider.notifier).state = event;
     setState(() {});
   }

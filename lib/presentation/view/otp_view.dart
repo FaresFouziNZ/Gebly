@@ -58,11 +58,11 @@ class OTPView extends StatelessWidget {
                           children: [
                             Padding(
                               padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.1),
-                              child: const Text(
+                              child: Text(
                                 'set up 2-step verification',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  color: Color(0xFF232323),
+                                  color: Theme.of(context).colorScheme.onTertiaryContainer,
                                   fontSize: 45,
                                   fontFamily: 'Readex Pro',
                                   fontWeight: FontWeight.w400,
@@ -140,8 +140,7 @@ class OTPView extends StatelessWidget {
                         context.go('/sign-up');
                       }
                     }
-                  } else {
-                  }
+                  } else {}
                 },
                 style: ButtonStyle(
                   fixedSize: MaterialStateProperty.all<Size>(
@@ -151,14 +150,14 @@ class OTPView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(7.0),
                   )),
                   backgroundColor: MaterialStateProperty.all<Color>(
-                    const Color(0xFFB42341),
+                    Theme.of(context).colorScheme.primary,
                   ),
                 ),
-                child: const Text(
+                child: Text(
                   'Continue',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.onPrimary,
                     fontSize: 28,
                     fontFamily: 'Readex Pro',
                     fontWeight: FontWeight.w400,

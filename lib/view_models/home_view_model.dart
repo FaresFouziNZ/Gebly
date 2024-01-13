@@ -10,7 +10,7 @@ class JoinEventViewModel {
     return false;
   }
 
-  Future<Event> getEventData(eventCode) async {
+  Future<Event?> getEventData(eventCode) async {
     final event = await DatabaseServices().getEventByCode(code: eventCode);
     return event;
   }

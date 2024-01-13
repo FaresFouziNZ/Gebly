@@ -18,16 +18,24 @@ class UserOrder extends HookConsumerWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
+              padding: const EdgeInsets.only(left: 8),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                // mainAxisSize: MainAxisSize.min,
                 children: [
-                  CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                    child: Text(user.firstName[0].toUpperCase()),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: CircleAvatar(
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      child: Text(
+                        user.firstName[0].toUpperCase(),
+                        style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                      ),
+                    ),
                   ),
                   Text(
                     user.firstName,
@@ -38,28 +46,31 @@ class UserOrder extends HookConsumerWidget {
                 ],
               ),
             ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: Container(
-                width: 10,
-                height: 10,
-                decoration: ShapeDecoration(
-                  color: const Color(0xFF7CFF89),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(99),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: Container(
+                    width: 10,
+                    height: 10,
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFF7CFF89),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(99),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: Text(
-                'Order confirmed',
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
+                Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: Text(
+                    'Order confirmed',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ],
         ),

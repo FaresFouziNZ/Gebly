@@ -29,19 +29,32 @@ class ParticipantCard extends ConsumerWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 8),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16),
-                    child: CircleAvatar(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      child: Text(user.firstName[0].toUpperCase()),
-                    ),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.15,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: CircleAvatar(
+                          backgroundColor: Theme.of(context).colorScheme.primary,
+                          child: Text(
+                            user.firstName[0].toUpperCase(),
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        user.firstName,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
-                  Text('${user.firstName} ${user.lastName}'),
-                ],
+                ),
               ),
             ),
             Padding(

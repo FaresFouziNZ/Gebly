@@ -58,6 +58,9 @@ class JoinEventWidget extends ConsumerWidget {
                 if (viewModel.isCodeValid(value)) {
                   final event = await viewModel.getEventData(value);
                   // ref.read(eventProvider.notifier).state = event;
+                  if (event == null) {
+                    return;
+                  }
                   context.push('/event-info', extra: event);
                 }
               },

@@ -72,14 +72,14 @@ class RestaurantSelectionPage extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 28,
                                     fontWeight: FontWeight.bold,
-                                    color: Theme.of(context).colorScheme.surface,
+                                    color: Theme.of(context).colorScheme.onSurface,
                                   ),
                                 ),
                                 IconButton(
                                   onPressed: () {},
                                   icon: Icon(
                                     Icons.close,
-                                    color: Theme.of(context).colorScheme.surface,
+                                    color: Theme.of(context).colorScheme.onSurface,
                                   ),
                                 )
                               ],

@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:gebly/core/models/event.dart';
+import 'package:gebly/core/providers/cart_provider.dart';
+import 'package:gebly/core/providers/event_provider.dart';
 import 'package:gebly/core/services/authentication_services.dart';
 import 'package:gebly/presentation/widget/join_event_widget.dart';
 // import 'package:gebly/view_models/home_view_model.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends ConsumerWidget {
   const HomeView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // final viewModel = HomeViewModel();
     return Scaffold(
       drawer: Drawer(
@@ -57,6 +61,7 @@ class HomeView extends StatelessWidget {
                     Text('Previous events', style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.scrim)),
                 onTap: () {
                   Navigator.pop(context);
+                  context.push('/previous-events');
                 },
               ),
             ),
@@ -144,6 +149,18 @@ class HomeView extends StatelessWidget {
                 title: Text('log out', style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.scrim)),
                 onTap: () {
                   AuthenticationServices().signOut();
+                  ref.read(eventProvider.notifier).state = Event(
+                    id: 0,
+                    bossID: '',
+                    restaurantID: 0,
+                    createdAt: DateTime.now(),
+                    deadline: DateTime.now(),
+                    status: '',
+                    isShare: false,
+                    totalPrice: 0.0,
+                    code: '',
+                  );
+                  ref.read(cartProvider).clear();
                   Navigator.pop(context);
                   context.go('/login');
                 },
@@ -296,11 +313,12 @@ class HomeView extends StatelessWidget {
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
                             )),
-                        const Text(
+                        Text(
                           ' is caring”',
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.onBackground,
                           ),
                         )
                       ],

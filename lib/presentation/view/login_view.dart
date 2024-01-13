@@ -52,16 +52,15 @@ class LogInView extends HookWidget {
                     ),
                     Center(
                       child: Column(
-                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const SizedBox(
                             height: 30,
                           ),
-                          const Text(
+                          Text(
                             'Welcome!',
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              color: Color(0xFF232323),
+                              color: Theme.of(context).colorScheme.onPrimary,
                               fontSize: 50,
                               fontFamily: 'Readex Pro',
                               fontWeight: FontWeight.w400,
@@ -90,8 +89,14 @@ class LogInView extends HookWidget {
                             child: TextField(
                               controller: phoneNumberController,
                               keyboardType: TextInputType.number,
+                              style: const TextStyle(
+                                color: Colors.black,
+                              ),
                               decoration: const InputDecoration(
                                   labelText: "Phone number",
+                                  labelStyle: TextStyle(
+                                    color: Colors.black,
+                                  ),
                                   hintText: 'Enter your phone number',
                                   border: InputBorder.none,
                                   contentPadding: EdgeInsets.only(left: 10)),
@@ -144,7 +149,7 @@ class LogInView extends HookWidget {
                     borderRadius: BorderRadius.circular(7.0),
                   )),
                   backgroundColor: MaterialStateProperty.all<Color>(
-                    const Color(0xFFB42341),
+                    Theme.of(context).colorScheme.primary,
                   ),
                 ),
                 child: const Text(

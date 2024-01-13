@@ -9,6 +9,20 @@ class EventMadeViewModel {
     return await DatabaseServices().getRestaurantByID(restaurantID: id);
   }
 
+  Future endEvent({required int eventID}) async {
+    await DatabaseServices().endEvent(eventID: eventID);
+  }
+
+  bool isCartEmpty(WidgetRef ref) {
+    final x = ref.watch(cartProvider);
+    for (var i = 0; i < x.keys.length; i++) {
+      if (x.values.elementAt(i) > 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   void loadMenu({required int restaurantId, required WidgetRef ref}) async {
     final data = await DatabaseServices().getMenu(restaurantID: restaurantId);
     Map<Item, int> cart = {};

@@ -3,6 +3,7 @@ import 'package:gebly/core/models/event.dart';
 import 'package:gebly/core/models/item.dart';
 import 'package:gebly/core/models/order.dart';
 import 'package:gebly/core/models/restaurant.dart';
+import 'package:gebly/core/services/authentication_services.dart';
 import 'package:gebly/core/services/database_tables.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -62,7 +63,7 @@ class DatabaseServices {
     return await getEventByID(eventID: userInfo[0]['active_event_id']);
   }
 
-  Future updateUserActiveEventID({required int eventID}) async {
+  Future<void> updateUserActiveEventID({required int eventID}) async {
     final userID = auth.currentUser!.id;
     await _tables.users.update({'active_event_id': eventID}).eq('id', userID);
   }
@@ -125,12 +126,40 @@ class DatabaseServices {
     return Event.fromJson(eventInfo[0]);
   }
 
-  Future<Event> getEventByCode({required String code}) async {
+  Future<Map<Item, int>> getCart({required int eventID}) async {
+    final order =
+        await _tables.order.select().eq('event_id', eventID).eq('user_id', AuthenticationServices().currentUser!.id);
+    if (order.length == 0) {
+      throw Exception('Order not found');
+    }
+    Map<Item, int> items = {};
+    final list = await getOrderItems(orderID: order[0]['order_id']);
+    for (var item in list) {
+      final itemInfo = await DatabaseServices().getItemByID(itemID: item['item_id']);
+      items.update(itemInfo, (value) {
+        return (value + item['quantity']!).toInt();
+      }, ifAbsent: () {
+        return item['quantity']!;
+      });
+    }
+    return items;
+  }
+
+  Future<Event?> getEventByCode({required String code}) async {
     var eventInfo = await _tables.event.select().eq('code', code);
     if (eventInfo.length == 0) {
-      throw Exception('Event not found');
+      return null;
     }
     return Event.fromJson(eventInfo[0]);
+  }
+
+  Future<void> endEvent({required int eventID}) async {
+    await _tables.users.update({'active_event_id': null}).eq('active_event_id', eventID);
+  }
+
+  Future<void> leaveEvent() async {
+    final userID = auth.currentUser!.id;
+    await _tables.users.update({'active_event_id': null}).eq('id', userID);
   }
 
   Future<List<Restaurant>> getNearRestaurants({int? limit}) async {
@@ -158,6 +187,11 @@ class DatabaseServices {
       throw Exception('Restaurant not found');
     }
     return Restaurant.fromJson(restaurantInfo[0]);
+  }
+
+  Future<int> getNumberOfParticipants({required int eventID}) async {
+    var participantsInfo = await _tables.users.select().eq('active_event_id', eventID);
+    return participantsInfo.length;
   }
 
   Future<List<Item>> getMenu({required int restaurantID}) async {
@@ -234,10 +268,18 @@ class DatabaseServices {
     return users;
   }
 
-  Future<List<Map<dynamic, dynamic>>> getOrderItems({required int orderID}) async {
+  Future<List<Map<dynamic, int>>> getOrderItems({required int orderID}) async {
+    List<Map<dynamic, int>> items = [];
     final x = await _tables.orderItem.select().eq('order_id', orderID);
-    print('got x');
-    return x;
+    for (var i = 0; i < x.length; i++) {
+      Map<dynamic, int> newItem = {};
+      newItem['id'] = x[i]['id'];
+      newItem['order_id'] = x[i]['order_id'];
+      newItem['item_id'] = x[i]['item_id'];
+      newItem['quantity'] = x[i]['quantity'];
+      items.add(newItem);
+    }
+    return items;
   }
 
   Future<Order> getOrder({required String uid, required int eventID}) async {
