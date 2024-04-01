@@ -30,10 +30,13 @@ class RestaurantCard extends ConsumerWidget {
                 height: MediaQuery.of(context).size.height * 0.145,
                 width: MediaQuery.of(context).size.width * 0.44,
                 decoration: ShapeDecoration(
-                  image: DecorationImage(image: NetworkImage(restaurant.logoUrl), fit: BoxFit.contain),
+                  image: DecorationImage(
+                      image: NetworkImage(restaurant.logoUrl),
+                      fit: BoxFit.contain),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(7),
                   ),
+                  color: Colors.black.withOpacity(0.5),
                 ),
               ),
               Container(
@@ -60,7 +63,8 @@ class RestaurantCard extends ConsumerWidget {
                           children: [
                             Text(
                               restaurant.name,
-                              style: const TextStyle(color: Colors.white, fontSize: 14),
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 14),
                             ),
                             const Spacer(),
                             GestureDetector(
@@ -88,21 +92,36 @@ class RestaurantCard extends ConsumerWidget {
                         padding: const EdgeInsets.only(right: 4.0, left: 4.0),
                         child: Row(
                           children: [
-                            Text(viewModel.getOpenHours(restaurant.openHours), style: const TextStyle(fontSize: 12)),
+                            Text(viewModel.getOpenHours(restaurant.openHours),
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant)),
                             const SizedBox(
                               width: 4,
                             ),
                             Icon(
                               Icons.watch_later_outlined,
-                              color: Theme.of(context).colorScheme.onSurface,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
                               size: 20,
                             ),
                             const Spacer(),
-                            const Text(
+                            Text(
                               '8.9 km',
-                              style: TextStyle(fontSize: 12),
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurfaceVariant),
                             ),
-                            Icon(Icons.location_pin, size: 20, color: Theme.of(context).colorScheme.onSurface),
+                            Icon(Icons.location_pin,
+                                size: 20,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurfaceVariant),
                           ],
                         ),
                       ),
@@ -127,9 +146,14 @@ class RestaurantCard extends ConsumerWidget {
                           ),
                         ),
                       ),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.fromLTRB(4, 0, 0, 0),
-                        child: Text('open'),
+                        child: Text(
+                          'open',
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: Theme.of(context).colorScheme.onPrimary),
+                        ),
                       )
                     ],
                   ),
