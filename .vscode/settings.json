@@ -4,5 +4,8 @@
         "iban",
         "riverpod",
         "Supabase"
-    ]
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "always"
+    }
 }

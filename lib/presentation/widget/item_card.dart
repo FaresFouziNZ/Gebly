@@ -43,9 +43,9 @@ class _ItemCardState extends ConsumerState<ItemCard> {
                         height: MediaQuery.of(context).size.height * 0.1,
                         width: MediaQuery.of(context).size.width * 0.2,
                         decoration: BoxDecoration(
-                          image: const DecorationImage(
-                            image: NetworkImage("https://via.placeholder.com/83x100"),
-                            fit: BoxFit.cover,
+                          image: DecorationImage(
+                            image: NetworkImage(widget.item.photoUrl),
+                            fit: BoxFit.contain,
                           ),
                           borderRadius: BorderRadius.circular(7),
                         ),
@@ -63,13 +63,19 @@ class _ItemCardState extends ConsumerState<ItemCard> {
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Icon(Icons.edit, size: 15, color: Theme.of(context).colorScheme.secondary),
+                                Icon(Icons.edit,
+                                    size: 15,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary),
                                 const SizedBox(width: 5),
                                 Text.rich(
                                   TextSpan(
                                     text: 'Customize',
                                     style: TextStyle(
-                                      color: Theme.of(context).colorScheme.secondary,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -137,7 +143,8 @@ class _ItemCardState extends ConsumerState<ItemCard> {
                 icon: const Icon(Icons.add_shopping_cart),
                 label: const Text('Add to cart'),
                 style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(7)),
                   foregroundColor: Colors.white,
                   backgroundColor: Theme.of(context).colorScheme.primary,
                   disabledForegroundColor: Colors.grey.withOpacity(0.38),

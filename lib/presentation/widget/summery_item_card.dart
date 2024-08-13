@@ -26,15 +26,16 @@ class SummeryItemCard extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
+                    
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         height: MediaQuery.of(context).size.height * 0.1,
                         width: MediaQuery.of(context).size.width * 0.2,
                         decoration: BoxDecoration(
-                          image: const DecorationImage(
-                            image: NetworkImage("https://via.placeholder.com/83x100"),
-                            fit: BoxFit.cover,
+                          image: DecorationImage(
+                            image: NetworkImage(item.photoUrl),
+                            fit: BoxFit.contain,
                           ),
                           borderRadius: BorderRadius.circular(7),
                         ),
@@ -59,7 +60,10 @@ class SummeryItemCard extends StatelessWidget {
                     ),
                     const Spacer(),
                     IconButton(
-                        onPressed: () {}, icon: Icon(Icons.close, size: 15, color: Theme.of(context).colorScheme.scrim))
+                        onPressed: () {},
+                        icon: Icon(Icons.close,
+                            size: 15,
+                            color: Theme.of(context).colorScheme.scrim))
                   ],
                 ),
               )

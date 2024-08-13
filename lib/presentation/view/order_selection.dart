@@ -25,7 +25,7 @@ class _OrderSelectionState extends ConsumerState<OrderSelection> {
             backgroundColor: Colors.transparent,
             elevation: 0.0,
             title: GestureDetector(
-              child: Text(widget.restaurant.name),
+              child: const Text('Select your order'),
               onTap: () {
                 // final x = ref.read(cartProvider);
               },
@@ -74,15 +74,20 @@ class _OrderSelectionState extends ConsumerState<OrderSelection> {
                       children: [
                         Text(
                           widget.restaurant.name,
+                          style: const TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
+                        const SizedBox(height: 5),
                         const Row(
                           children: [
                             Icon(Icons.watch_later_outlined),
-                            SizedBox(width: 6),
+                            SizedBox(width: 5),
                             Text(
-                              'Working Hours',
+                              'Working Hours:',
                             ),
-                            SizedBox(width: 6),
+                            SizedBox(width: 5),
                             Text(
                               '11:00am - 3:00 am',
                             ),
@@ -95,183 +100,201 @@ class _OrderSelectionState extends ConsumerState<OrderSelection> {
               ),
             ),
           ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              width: 426,
-              height: 48,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Container(
-                      height: 48,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: const BoxDecoration(color: Color(0xFFFFF8F7)),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              height: double.infinity,
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
-                              child: const Column(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    child: SizedBox(
-                                      width: 69,
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            'Gathering',
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          SizedBox(
-                                            width: 69,
-                                            height: 14,
-                                            child: Stack(
-                                              children: [
-                                                // Positioned(
-                                                //   left: 2,
-                                                //   top: 11,
-                                                //   child: Container(
-                                                //     width: 65,
-                                                //     height: 3,
-                                                //     decoration: const ShapeDecoration(
-                                                //       color: Color(0xFFB42341),
-                                                //       shape: RoundedRectangleBorder(
-                                                //         borderRadius: BorderRadius.only(
-                                                //           topLeft: Radius.circular(100),
-                                                //           topRight: Radius.circular(100),
-                                                //         ),
-                                                //       ),
-                                                //     ),
-                                                //   ),
-                                                // ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 48,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: const BoxDecoration(color: Color(0xFFFFF8F7)),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              height: double.infinity,
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      width: 90,
-                                      padding: const EdgeInsets.only(bottom: 14),
-                                      child: const Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            'Sandwiches',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              height: 0.10,
-                                              letterSpacing: 0.10,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 48,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: const BoxDecoration(color: Color(0xFFFFF8F7)),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              height: double.infinity,
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      width: 90,
-                                      padding: const EdgeInsets.only(bottom: 14),
-                                      child: const Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            'Sides',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              height: 0.10,
-                                              letterSpacing: 0.10,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          // SliverToBoxAdapter(
+          //   child: SizedBox(
+          //     width: MediaQuery.of(context).size.width * 0.9,
+          //     height: 48,
+          //     child: Row(
+          //       mainAxisSize: MainAxisSize.min,
+          //       mainAxisAlignment: MainAxisAlignment.start,
+          //       crossAxisAlignment: CrossAxisAlignment.start,
+          //       children: [
+          //         Expanded(
+          //           child: Container(
+          //             height: 48,
+          //             clipBehavior: Clip.antiAlias,
+          //             decoration: const BoxDecoration(color: Color(0xFFFFF8F7)),
+          //             child: Row(
+          //               mainAxisSize: MainAxisSize.min,
+          //               mainAxisAlignment: MainAxisAlignment.center,
+          //               crossAxisAlignment: CrossAxisAlignment.end,
+          //               children: [
+          //                 Expanded(
+          //                   child: Container(
+          //                     height: double.infinity,
+          //                     padding:
+          //                         const EdgeInsets.symmetric(horizontal: 16),
+          //                     child: Column(
+          //                       mainAxisSize: MainAxisSize.min,
+          //                       mainAxisAlignment: MainAxisAlignment.end,
+          //                       crossAxisAlignment: CrossAxisAlignment.center,
+          //                       children: [
+          //                         Expanded(
+          //                           child: SizedBox(
+          //                             width: 69,
+          //                             child: Column(
+          //                               mainAxisSize: MainAxisSize.min,
+          //                               mainAxisAlignment:
+          //                                   MainAxisAlignment.end,
+          //                               crossAxisAlignment:
+          //                                   CrossAxisAlignment.center,
+          //                               children: [
+          //                                 const Text(
+          //                                   'Gathering',
+          //                                   textAlign: TextAlign.center,
+          //                                 ),
+          //                                 SizedBox(
+          //                                   width: 69,
+          //                                   height: 14,
+          //                                   child: Stack(
+          //                                     children: [
+          //                                       Positioned(
+          //                                         left: 2,
+          //                                         top: 11,
+          //                                         child: Container(
+          //                                           width: 65,
+          //                                           height: 3,
+          //                                           decoration:
+          //                                               const ShapeDecoration(
+          //                                             color: Color(0xFFB42341),
+          //                                             shape:
+          //                                                 RoundedRectangleBorder(
+          //                                               borderRadius:
+          //                                                   BorderRadius.only(
+          //                                                 topLeft:
+          //                                                     Radius.circular(
+          //                                                         100),
+          //                                                 topRight:
+          //                                                     Radius.circular(
+          //                                                         100),
+          //                                               ),
+          //                                             ),
+          //                                           ),
+          //                                         ),
+          //                                       ),
+          //                                     ],
+          //                                   ),
+          //                                 ),
+          //                               ],
+          //                             ),
+          //                           ),
+          //                         ),
+          //                       ],
+          //                     ),
+          //                   ),
+          //                 ),
+          //               ],
+          //             ),
+          //           ),
+          //         ),
+          //         Expanded(
+          //           child: Container(
+          //             height: 48,
+          //             clipBehavior: Clip.antiAlias,
+          //             decoration: const BoxDecoration(color: Color(0xFFFFF8F7)),
+          //             child: Row(
+          //               mainAxisSize: MainAxisSize.min,
+          //               mainAxisAlignment: MainAxisAlignment.center,
+          //               crossAxisAlignment: CrossAxisAlignment.end,
+          //               children: [
+          //                 Expanded(
+          //                   child: Container(
+          //                     height: double.infinity,
+          //                     padding:
+          //                         const EdgeInsets.symmetric(horizontal: 16),
+          //                     child: Column(
+          //                       mainAxisSize: MainAxisSize.min,
+          //                       mainAxisAlignment: MainAxisAlignment.end,
+          //                       crossAxisAlignment: CrossAxisAlignment.center,
+          //                       children: [
+          //                         Expanded(
+          //                           child: Container(
+          //                             width: 90,
+          //                             padding:
+          //                                 const EdgeInsets.only(bottom: 14),
+          //                             child: const Column(
+          //                               mainAxisSize: MainAxisSize.min,
+          //                               mainAxisAlignment:
+          //                                   MainAxisAlignment.center,
+          //                               crossAxisAlignment:
+          //                                   CrossAxisAlignment.center,
+          //                               children: [
+          //                                 Text(
+          //                                   'Sandwiches',
+          //                                   textAlign: TextAlign.center,
+          //                                   style: TextStyle(
+          //                                     height: 0.10,
+          //                                     letterSpacing: 0.10,
+          //                                   ),
+          //                                 ),
+          //                               ],
+          //                             ),
+          //                           ),
+          //                         ),
+          //                       ],
+          //                     ),
+          //                   ),
+          //                 ),
+          //               ],
+          //             ),
+          //           ),
+          //         ),
+          //         Expanded(
+          //           child: Container(
+          //             height: 48,
+          //             clipBehavior: Clip.antiAlias,
+          //             decoration: const BoxDecoration(color: Color(0xFFFFF8F7)),
+          //             child: Row(
+          //               mainAxisSize: MainAxisSize.min,
+          //               mainAxisAlignment: MainAxisAlignment.center,
+          //               crossAxisAlignment: CrossAxisAlignment.end,
+          //               children: [
+          //                 Expanded(
+          //                   child: Container(
+          //                     height: double.infinity,
+          //                     padding:
+          //                         const EdgeInsets.symmetric(horizontal: 16),
+          //                     child: Column(
+          //                       mainAxisSize: MainAxisSize.min,
+          //                       mainAxisAlignment: MainAxisAlignment.end,
+          //                       crossAxisAlignment: CrossAxisAlignment.center,
+          //                       children: [
+          //                         Expanded(
+          //                           child: Container(
+          //                             width: 90,
+          //                             padding:
+          //                                 const EdgeInsets.only(bottom: 14),
+          //                             child: const Column(
+          //                               mainAxisSize: MainAxisSize.min,
+          //                               mainAxisAlignment:
+          //                                   MainAxisAlignment.end,
+          //                               crossAxisAlignment:
+          //                                   CrossAxisAlignment.center,
+          //                               children: [
+          //                                 Text(
+          //                                   'Sides',
+          //                                   textAlign: TextAlign.center,
+          //                                   style: TextStyle(
+          //                                     height: 0.10,
+          //                                     letterSpacing: 0.10,
+          //                                   ),
+          //                                 ),
+          //                               ],
+          //                             ),
+          //                           ),
+          //                         ),
+          //                       ],
+          //                     ),
+          //                   ),
+          //                 ),
+          //               ],
+          //             ),
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
           SliverToBoxAdapter(
             child: FutureBuilder(
                 future: null,
@@ -321,7 +344,8 @@ class _OrderSelectionState extends ConsumerState<OrderSelection> {
                   height: 54,
                   decoration: ShapeDecoration(
                     color: Theme.of(context).colorScheme.primaryContainer,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7)),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -330,11 +354,15 @@ class _OrderSelectionState extends ConsumerState<OrderSelection> {
                         padding: const EdgeInsets.all(4.0),
                         child: Icon(
                           Icons.shopping_cart_checkout,
-                          color: Theme.of(context).colorScheme.onPrimaryContainer,
+                          color:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
                         ),
                       ),
                       Text("Proceed to confirmation",
-                          style: TextStyle(color: Theme.of(context).colorScheme.onPrimaryContainer)),
+                          style: TextStyle(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onPrimaryContainer)),
                       // Padding(
                       //   padding: const EdgeInsets.all(4.0),
                       //   child: Text("50 SR", style: TextStyle(color: Theme.of(context).colorScheme.onPrimaryContainer)),
@@ -351,15 +379,25 @@ class _OrderSelectionState extends ConsumerState<OrderSelection> {
                 height: 54,
                 decoration: ShapeDecoration(
                   color: Theme.of(context).colorScheme.primaryContainer,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(7)),
                 ),
-                child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Text(
-                    viewModel.getCartItemCount(ref),
-                    style: TextStyle(color: Theme.of(context).colorScheme.onPrimaryContainer),
-                  ),
-                  Text("Items", style: TextStyle(color: Theme.of(context).colorScheme.onPrimaryContainer))
-                ]),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        viewModel.getCartItemCount(ref),
+                        style: TextStyle(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer),
+                      ),
+                      Text("Items",
+                          style: TextStyle(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onPrimaryContainer))
+                    ]),
               ),
             )
           ],
