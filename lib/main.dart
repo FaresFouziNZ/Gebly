@@ -10,10 +10,7 @@ import 'constants/credentials.dart' as credentials;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Supabase.initialize(
-    url: credentials.url,
-    anonKey: credentials.anonKey,
-  );
+  await Supabase.initialize(url: credentials.url, anonKey: credentials.anonKey);
   runApp(const ProviderScope(child: MainApp()));
 }
 
@@ -38,7 +35,7 @@ class _MainAppState extends ConsumerState<MainApp> {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: router,
-      theme: ThemeData(colorScheme: lightColorScheme, scaffoldBackgroundColor: const Color(0xFFFFEEDE)),
+      theme: ThemeData(colorScheme: darkColorScheme, scaffoldBackgroundColor: const Color(0xFFFFEEDE)),
       darkTheme: ThemeData(colorScheme: darkColorScheme),
       themeMode: ThemeMode.light,
     );

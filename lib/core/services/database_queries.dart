@@ -17,7 +17,7 @@ class DatabaseServices {
       return false;
     }
     var userInfo = await _tables.users.select().eq('id', id);
-    if (userInfo.length == 0) {
+    if (userInfo.isEmpty) {
       return false;
     }
     return true;
@@ -29,9 +29,6 @@ class DatabaseServices {
       throw Exception('User not logged in');
     }
     final response = await _tables.users.insert(user.toJson()).select();
-    if (response == null) {
-      throw Exception('Error creating user');
-    }
     return true;
   }
 
@@ -81,17 +78,13 @@ class DatabaseServices {
 
   Future<Event> createEvent({required Event event}) async {
     final response = await _tables.event.insert(event.toJson()).select();
-    if (response == null) {
-      throw Exception('Error creating event');
-    } else {
-      await updateUserActiveEventID(eventID: response[0]['event_id']);
-      return Event.fromJson(response[0]);
-    }
+    await updateUserActiveEventID(eventID: response[0]['event_id']);
+    return Event.fromJson(response[0]);
   }
 
   Future<int> latestEventID() async {
     var eventInfo = await _tables.event.select().order('event_id', ascending: false).limit(1);
-    if (eventInfo.length == 0) {
+    if (eventInfo.isEmpty) {
       return 0;
     }
     return eventInfo[0]['event_id'];
@@ -99,7 +92,7 @@ class DatabaseServices {
 
   Future<int> latestOrderID() async {
     var orderInfo = await _tables.order.select().order('order_id', ascending: false).limit(1);
-    if (orderInfo.length == 0) {
+    if (orderInfo.isEmpty) {
       return 0;
     }
     return orderInfo[0]['order_id'];
@@ -120,7 +113,7 @@ class DatabaseServices {
 
   Future<Event> getEventByID({required int eventID}) async {
     var eventInfo = await _tables.event.select().eq('event_id', eventID);
-    if (eventInfo.length == 0) {
+    if (eventInfo.isEmpty) {
       throw Exception('Event not found');
     }
     return Event.fromJson(eventInfo[0]);
@@ -129,7 +122,7 @@ class DatabaseServices {
   Future<Map<Item, int>> getCart({required int eventID}) async {
     final order =
         await _tables.order.select().eq('event_id', eventID).eq('user_id', AuthenticationServices().currentUser!.id);
-    if (order.length == 0) {
+    if (order.isEmpty) {
       throw Exception('Order not found');
     }
     Map<Item, int> items = {};
@@ -147,7 +140,7 @@ class DatabaseServices {
 
   Future<Event?> getEventByCode({required String code}) async {
     var eventInfo = await _tables.event.select().eq('code', code);
-    if (eventInfo.length == 0) {
+    if (eventInfo.isEmpty) {
       return null;
     }
     return Event.fromJson(eventInfo[0]);
@@ -183,7 +176,7 @@ class DatabaseServices {
 
   Future<Restaurant> getRestaurantByID({required int restaurantID}) async {
     var restaurantInfo = await _tables.restaurant.select().eq('resturant_id', restaurantID);
-    if (restaurantInfo.length == 0) {
+    if (restaurantInfo.isEmpty) {
       throw Exception('Restaurant not found');
     }
     return Restaurant.fromJson(restaurantInfo[0]);
@@ -228,7 +221,7 @@ class DatabaseServices {
 
   Future<int> latestOrderItem() async {
     var orderItemInfo = await _tables.orderItem.select().order('id', ascending: false).limit(1);
-    if (orderItemInfo.length == 0) {
+    if (orderItemInfo.isEmpty) {
       return 0;
     }
     return orderItemInfo[0]['id'];
@@ -284,7 +277,7 @@ class DatabaseServices {
 
   Future<Order> getOrder({required String uid, required int eventID}) async {
     var orderInfo = await _tables.order.select().eq('user_id', uid).eq('event_id', eventID);
-    if (orderInfo.length == 0) {
+    if (orderInfo.isEmpty) {
       throw Exception('Order not found');
     }
     return Order.fromJson(orderInfo[0]);
@@ -292,7 +285,7 @@ class DatabaseServices {
 
   Future<List<Item>> getItems({required Order order}) async {
     List<Item> items = [];
-    var itemsInfo = await _tables.orderItem.select().eq('order_id', order.orderID);
+    var itemsInfo = await _tables.orderItem.select().eq('order_id', order.orderID as Object);
     for (var i = 0; i < itemsInfo.length; i++) {
       items.add(await getItemByID(itemID: itemsInfo[i]['item_id']));
     }
@@ -305,7 +298,7 @@ class DatabaseServices {
 
   Future<Item> getItemByID({required itemID}) async {
     var itemInfo = await _tables.item.select().eq('item_id', itemID);
-    if (itemInfo.length == 0) {
+    if (itemInfo.isEmpty) {
       throw Exception('Item not found');
     }
     return Item.fromJson(itemInfo[0]);

@@ -28,11 +28,7 @@ class LogInView extends HookWidget {
                     height: 4.0,
                     color: Theme.of(context).colorScheme.primary,
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    height: 4.0,
-                    color: Colors.black12,
-                  ),
+                  Container(width: MediaQuery.of(context).size.width * 0.5, height: 4.0, color: Colors.black12),
                 ],
               ),
             ),
@@ -46,21 +42,17 @@ class LogInView extends HookWidget {
                     Positioned(
                       right: MediaQuery.of(context).size.width * -0.08,
                       bottom: 0,
-                      child: Image.asset(
-                        'assets/images/bg.png',
-                      ),
+                      child: Image.asset('assets/images/bg.png'),
                     ),
                     Center(
                       child: Column(
                         children: [
-                          const SizedBox(
-                            height: 30,
-                          ),
+                          const SizedBox(height: 30),
                           Text(
                             'Welcome!',
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.onPrimary,
+                              color: Theme.of(context).colorScheme.primary,
                               fontSize: 50,
                               fontFamily: 'Readex Pro',
                               fontWeight: FontWeight.w400,
@@ -68,9 +60,7 @@ class LogInView extends HookWidget {
                               letterSpacing: -0.25,
                             ),
                           ),
-                          const SizedBox(
-                            height: 80,
-                          ),
+                          const SizedBox(height: 80),
                           Container(
                             width: 350,
                             decoration: const BoxDecoration(
@@ -79,27 +69,19 @@ class LogInView extends HookWidget {
                                 topRight: Radius.circular(4),
                               ),
                               color: Colors.white,
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Colors.black,
-                                  width: 2.0,
-                                ),
-                              ),
+                              border: Border(bottom: BorderSide(color: Colors.black, width: 2.0)),
                             ),
                             child: TextField(
                               controller: phoneNumberController,
                               keyboardType: TextInputType.number,
-                              style: const TextStyle(
-                                color: Colors.black,
-                              ),
+                              style: const TextStyle(color: Colors.black),
                               decoration: const InputDecoration(
-                                  labelText: "Phone number",
-                                  labelStyle: TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                  hintText: 'Enter your phone number',
-                                  border: InputBorder.none,
-                                  contentPadding: EdgeInsets.only(left: 10)),
+                                labelText: "Phone number",
+                                labelStyle: TextStyle(color: Colors.black),
+                                hintText: 'Enter your phone number',
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.only(left: 10),
+                              ),
                             ),
                           ),
                         ],
@@ -118,10 +100,7 @@ class LogInView extends HookWidget {
         decoration: const ShapeDecoration(
           color: Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25),
-              topRight: Radius.circular(25),
-            ),
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25)),
           ),
         ),
         child: Column(
@@ -136,21 +115,16 @@ class LogInView extends HookWidget {
                     context.push('/otp', extra: phoneNumberController.text);
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Invalid phone number'),
-                        duration: Duration(seconds: 2),
-                      ),
+                      const SnackBar(content: Text('Invalid phone number'), duration: Duration(seconds: 2)),
                     );
                   }
                 },
                 style: ButtonStyle(
-                  fixedSize: MaterialStateProperty.all<Size>(const Size(0, 58)),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(7.0),
-                  )),
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                    Theme.of(context).colorScheme.primary,
+                  fixedSize: WidgetStateProperty.all<Size>(const Size(0, 58)),
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.0)),
                   ),
+                  backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).colorScheme.primary),
                 ),
                 child: const Text(
                   'Login',
