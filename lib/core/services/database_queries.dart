@@ -16,7 +16,7 @@ class DatabaseServices {
     if (id == null) {
       return false;
     }
-    var userInfo = await _tables.users.select().eq('id', id);
+    var userInfo = await _tables.users.select().eq('user_id', id);
     if (userInfo.isEmpty) {
       return false;
     }
@@ -36,26 +36,28 @@ class DatabaseServices {
     final userID = auth.currentUser?.id;
     if (userID == null) {
       return Event(
-          id: 0,
-          bossID: '',
-          restaurantID: 0,
-          status: '',
-          isShare: false,
-          totalPrice: 0,
-          createdAt: DateTime.now(),
-          code: '');
+        id: 0,
+        bossID: '',
+        restaurantID: 0,
+        status: '',
+        isShare: false,
+        totalPrice: 0,
+        createdAt: DateTime.now(),
+        code: '',
+      );
     }
-    var userInfo = await _tables.users.select().eq('id', userID);
+    var userInfo = await _tables.users.select().eq('user_id', userID);
     if (userInfo[0]['active_event_id'] == null) {
       return Event(
-          id: 0,
-          bossID: '',
-          restaurantID: 0,
-          status: '',
-          isShare: false,
-          totalPrice: 0,
-          createdAt: DateTime.now(),
-          code: '');
+        id: 0,
+        bossID: '',
+        restaurantID: 0,
+        status: '',
+        isShare: false,
+        totalPrice: 0,
+        createdAt: DateTime.now(),
+        code: '',
+      );
     }
     return await getEventByID(eventID: userInfo[0]['active_event_id']);
   }
@@ -69,7 +71,7 @@ class DatabaseServices {
     if (userID == '') {
       userID = auth.currentUser!.id;
     }
-    var userInfo = await _tables.users.select().eq('id', userID);
+    var userInfo = await _tables.users.select().eq('user_id', userID);
     if (userInfo[0]['active_event_id'] == null) {
       return true;
     }
@@ -100,7 +102,7 @@ class DatabaseServices {
 
   Future<bool> joinEventByID({required String eventID}) async {
     final userID = auth.currentUser!.id;
-    var userInfo = await _tables.users.select().eq('id', userID);
+    var userInfo = await _tables.users.select().eq('user_id', userID);
     if (userInfo[0]['active_event_id'] != null) {
       throw Exception('User already in event');
     }
@@ -120,8 +122,10 @@ class DatabaseServices {
   }
 
   Future<Map<Item, int>> getCart({required int eventID}) async {
-    final order =
-        await _tables.order.select().eq('event_id', eventID).eq('user_id', AuthenticationServices().currentUser!.id);
+    final order = await _tables.order
+        .select()
+        .eq('event_id', eventID)
+        .eq('user_id', AuthenticationServices().currentUser!.id);
     if (order.isEmpty) {
       throw Exception('Order not found');
     }
@@ -129,11 +133,15 @@ class DatabaseServices {
     final list = await getOrderItems(orderID: order[0]['order_id']);
     for (var item in list) {
       final itemInfo = await DatabaseServices().getItemByID(itemID: item['item_id']);
-      items.update(itemInfo, (value) {
-        return (value + item['quantity']!).toInt();
-      }, ifAbsent: () {
-        return item['quantity']!;
-      });
+      items.update(
+        itemInfo,
+        (value) {
+          return (value + item['quantity']!).toInt();
+        },
+        ifAbsent: () {
+          return item['quantity']!;
+        },
+      );
     }
     return items;
   }
@@ -237,7 +245,7 @@ class DatabaseServices {
           'item_id': item.id,
           'id': latestID + 1 + i,
           'quantity': items[item],
-          'created_at': DateTime.now().toIso8601String()
+          'created_at': DateTime.now().toIso8601String(),
         });
       }
     }

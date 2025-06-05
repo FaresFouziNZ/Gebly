@@ -6,10 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ParticipantCard extends ConsumerWidget {
   final DatabaseUser user;
-  const ParticipantCard({
-    super.key,
-    required this.user,
-  });
+  const ParticipantCard({super.key, required this.user});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,9 +17,7 @@ class ParticipantCard extends ConsumerWidget {
         width: MediaQuery.of(context).size.width * 0.95,
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(10),
-          ),
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,16 +37,11 @@ class ParticipantCard extends ConsumerWidget {
                           backgroundColor: Theme.of(context).colorScheme.primary,
                           child: Text(
                             user.firstName[0].toUpperCase(),
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onPrimary,
-                            ),
+                            style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
                           ),
                         ),
                       ),
-                      Text(
-                        user.firstName,
-                        textAlign: TextAlign.center,
-                      ),
+                      Text(user.firstName, textAlign: TextAlign.center),
                     ],
                   ),
                 ),
@@ -60,16 +50,14 @@ class ParticipantCard extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.only(right: 16),
               child: FutureBuilder(
-                  future: DatabaseServices().getOrder(uid: user.id, eventID: ref.watch(eventProvider).id!),
-                  builder: (context, snapshot) {
-                    return Text(
-                      "${snapshot.data?.orderTotal.toString() ?? '0.00'} SAR",
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    );
-                  }),
+                future: DatabaseServices().getOrder(uid: user.userId, eventID: ref.watch(eventProvider).id!),
+                builder: (context, snapshot) {
+                  return Text(
+                    "${snapshot.data?.orderTotal.toString() ?? '0.00'} SAR",
+                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  );
+                },
+              ),
             ),
           ],
         ),

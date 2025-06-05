@@ -1,12 +1,12 @@
 class DatabaseUser {
-  final String id;
+  final String userId;
   final String firstName;
   final String lastName;
   final String mobileNumber;
   final int? activeEventID;
 
   DatabaseUser({
-    required this.id,
+    required this.userId,
     required this.firstName,
     required this.lastName,
     required this.mobileNumber,
@@ -15,7 +15,7 @@ class DatabaseUser {
 
   factory DatabaseUser.fromJson(Map<String, dynamic> json) {
     return DatabaseUser(
-      id: json['id'],
+      userId: json['user_id'],
       firstName: json['first_name'],
       lastName: json['last_name'],
       mobileNumber: json['mobile_number'],
@@ -25,7 +25,7 @@ class DatabaseUser {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      'user_id': userId,
       'first_name': firstName,
       'last_name': lastName,
       'mobile_number': mobileNumber,
@@ -34,7 +34,7 @@ class DatabaseUser {
   }
 
   bool isEqual(DatabaseUser other) {
-    return id == other.id &&
+    return userId == other.userId &&
         firstName == other.firstName &&
         lastName == other.lastName &&
         mobileNumber == other.mobileNumber &&
@@ -43,6 +43,6 @@ class DatabaseUser {
 
   @override
   String toString() {
-    return 'DatabaseUser(id: $id, firstName: $firstName, lastName: $lastName, mobileNumber: $mobileNumber, activeEventID: $activeEventID)';
+    return 'DatabaseUser(id: $userId, firstName: $firstName, lastName: $lastName, mobileNumber: $mobileNumber, activeEventID: $activeEventID)';
   }
 }

@@ -35,7 +35,7 @@ class _MainAppState extends ConsumerState<MainApp> {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: router,
-      theme: ThemeData(colorScheme: darkColorScheme, scaffoldBackgroundColor: const Color(0xFFFFEEDE)),
+      theme: ThemeData(colorScheme: lightColorScheme, scaffoldBackgroundColor: const Color(0xFFFFEEDE)),
       darkTheme: ThemeData(colorScheme: darkColorScheme),
       themeMode: ThemeMode.light,
     );

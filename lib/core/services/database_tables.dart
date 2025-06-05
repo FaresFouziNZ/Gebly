@@ -9,5 +9,5 @@ class DatabaseTables {
   final orderItem = _instance.from('order_items');
   final payment = _instance.from('payment');
   final restaurant = _instance.from('restaurant');
-  final users = _instance.from('users');
+  final users = _instance.from('user');
 }

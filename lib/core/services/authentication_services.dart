@@ -23,7 +23,7 @@ class AuthenticationServices {
   }
 
   Future signInWithOtp({required String phone}) async {
-    await auth.signInWithOtp(phone: phone, channel: OtpChannel.whatsapp);
+    await auth.signInWithOtp(phone: phone, channel: OtpChannel.sms);
   }
 
   Future<bool> verifyOtp({required String phone, required String code}) async {

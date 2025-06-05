@@ -6,7 +6,7 @@ class SignUpViewModel {
   Future<bool> signUp({required String fName, required String lName, required String phoneNumber}) async {
     final currentUser = AuthenticationServices().currentUser;
     final user = DatabaseUser(
-      id: currentUser!.id,
+      userId: currentUser!.id,
       firstName: fName,
       lastName: lName,
       mobileNumber: '+966${phoneNumber.substring(1)}',
@@ -14,8 +14,12 @@ class SignUpViewModel {
     return await DatabaseServices().createUser(user: user);
   }
 
-  bool isDataValid(
-      {required String fName, required String lName, required bool isAgreed, required String phoneNumber}) {
+  bool isDataValid({
+    required String fName,
+    required String lName,
+    required bool isAgreed,
+    required String phoneNumber,
+  }) {
     if (fName.isEmpty || lName.isEmpty || !isAgreed || phoneNumber.length != 10) {
       return false;
     }
